@@ -2,6 +2,9 @@
 //
 //
 //
+#include "file_utilities.h"
+#include "gameOfLife.h"
+
 #include <stdio.h>
 
 
