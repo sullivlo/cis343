@@ -50,10 +50,8 @@ int main(int argc,char* argv[])
 
     char* world = atoi( argv[1]);
 
-    int grid[][] = loadGrid(world);
-    int xy = x*y;
+    int grid[][] = loadGrid(&world);
     printf("\n");
-    //printf("%d",xy);
 
     drawGrid(grid[][]);
     return 0;
