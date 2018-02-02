@@ -11,9 +11,7 @@ int getMem(int** Mem)
 //https://www.ics.uci.edu/~dan/class/165/notes/memory.html
 }
 
-void drawGrid(int x, int y) {
-    int grid[x][y];
-
+void drawGrid(int grid[][]) {
 
     for (int i = 0; i < x; i++) {
         for (int j = 0; j < y; j++) {
@@ -25,6 +23,12 @@ void drawGrid(int x, int y) {
 
     }
 }
+
+int loadGrid(char* f){
+
+return 0;
+}
+
 
 // reference https://www.cprogramming.com/tutorial/lesson14.html
 int main(int argc,char* argv[])
@@ -44,15 +48,14 @@ int main(int argc,char* argv[])
     }
 
 
-    int x = atoi( argv[1]);
+    char* world = atoi( argv[1]);
 
-    int y = atoi( argv[2]);
-
+    int grid[][] = loadGrid(world);
     int xy = x*y;
     printf("\n");
     //printf("%d",xy);
 
-    drawGrid(x,y);
+    drawGrid(grid[][]);
     return 0;
 
 
