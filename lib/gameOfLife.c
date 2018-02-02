@@ -37,17 +37,19 @@ int main(int argc,char* argv[])
 
     if(argc==1)
         printf("\nNo Extra Command Line Argument Passed Other Than Program Name");
-
-    if(argc>=2)
-    {
+  
+   
         printf("\nNumber Of Arguments Passed: %d",argc);
-        printf("\n----Following Are The Command Line Arguments Passed----");
-        for(counter=0;counter<argc;counter++)
-            printf("\nargv[%d]: %s",counter,argv[counter]);
-    }
+
+	printf("\nLooking for file " );
+	
+	printf( nargv[0]);
+
+	
 
 
-    int x = atoi( argv[1]);
+
+/*    int x = atoi( argv[1]);
 
     int y = atoi( argv[2]);
 
@@ -57,7 +59,7 @@ int main(int argc,char* argv[])
 
     drawGrid(x,y);
     return 0;
-
+*/
 
 }
 
