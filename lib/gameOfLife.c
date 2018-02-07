@@ -1,4 +1,4 @@
-// Author: Louis Sullivan
+// Author: Louis Sullivan and Brendan Nahed
 //
 //
 //
@@ -24,16 +24,15 @@ void drawGrid(int grid[][]) {
     }
 }
 
-int loadGrid(char* f){
 
-return 0;
-}
 
 
 // reference https://www.cprogramming.com/tutorial/lesson14.html
 int main(int argc,char* argv[])
 {
     int counter;
+    int filesize;
+    char* buffer;
     printf("Program Name Is: %s",argv[0]);
 
     if(argc==1)
@@ -49,8 +48,11 @@ int main(int argc,char* argv[])
 
 
     char* world = atoi( argv[1]);
+    
+    filesize = write_file(world, &buffer);
+    write_file(world, buffer, filesize);
 
-    int grid[][] = loadGrid(&world);
+    int grid[][];
     printf("\n");
 
     drawGrid(grid[][]);
