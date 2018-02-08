@@ -46,7 +46,6 @@ int main(int argc,char* argv[])
     int fileSize;
     char* fileName;
     char* buffer;
-    char **fileName;
     printf("Program Name Is: %s",argv[0]);
 
     if(argc==1)
