@@ -52,11 +52,11 @@ int main(int argc,char* argv[])
     if(argc==1)
     {
         //User should only pass a file path to the cammand line
-        printf("\nNo Extra Command Line Argument Passed Other Than Program Name");
+        printf("No Extra Command Line Argument Passed Other Than Program Name\n");
 
-        printf("\nNumber Of Arguments Passed: %d",argc);
+        printf("Number Of Arguments Passed: %d\n",argc);
 
-        printf("\nLooking for file " );
+        printf("Looking for file \n" );
 
         printf( "%s", argv[0]);
 
@@ -64,21 +64,13 @@ int main(int argc,char* argv[])
     }
 
     //Should not need args more that 1
-    if(argc==2)
+    if(argc>=2)
     {
-        printf("\nNumber Of Arguments Passed: %d",argc);
-        printf("\n----Following Are The Command Line Arguments Passed----");
-        for(counter=0;counter<argc;counter++) {
-            printf("\nargv[%d]: %s", counter, argv[counter]);
-            printf("\n");
-            if(counter ==1)
-            {
-                fileName = argv[counter];
-                printf("%s", fileName);
-
-
-            }
-        }
+        printf("Number Of Arguments Passed: %d\n",argc);
+        printf("----Following Are The Command Line Arguments Passed----\n");
+        printf("argv[%d]: %s\n", 1, argv[1]);
+        fileName = argv[1];
+        
 
 
     }
@@ -86,13 +78,12 @@ int main(int argc,char* argv[])
 
 
 
-    printf("hi1: %s", fileName);
     //printf("%d",xy);
 
     //char* world = atoi( argv[1]);
 
     fileSize = read_file(fileName, &buffer);
-    printf("%s", buffer);
+    printf("%s\n", buffer);
     //write_file(world, buffer, filesize);
 
     //int grid[][];
