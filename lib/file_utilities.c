@@ -8,6 +8,8 @@
 #include "gameOfLife.h"
 #include "file_utilities.h"
 
+
+
 int read_file( char* filename, char **buffer ){
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-that-to-another-file
     FILE* file1 = fopen(filename, "r");
@@ -29,6 +31,7 @@ int read_file( char* filename, char **buffer ){
 
 int write_file( char* filename, char *buffer, int size){
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-that-to-another-file
+    printf("Made it");
     FILE* file2;
     file2 = fopen(filename, "w");
 
