@@ -34,32 +34,14 @@ int write_file( char* filename, char *buffer, int size){
 
     for (int k = 0; k < size; k++) {
         char* x =  *(&buffer + k);
-        fprintf(file2, "%s", x);
+        fprintf(file2, "%s ", x);
     }
-
     printf("%s", filename);
-    return 1;
-
 
     return 0;
 
-//int read_file(char* filename, char **buffer ){
-//    FILE* f;
-//    int size;
-//    f = fopen(filename, "r");
-//    if(!f){
-//        printf("File not found.");
-//        return 0;
-//    }
-//    fseek(f, 0L, SEEK_END);
-//    size = ftell(f);
-//    *buffer = (char*) malloc(size);
-//    fread(*buffer, size, 1, filename);
-//    fclose(filename);
-//    return size;
-//}
-
-//int write_file(char* filename, char *buffer, int size){
-//   FILE* f;
-//   f = fopen(filename, "w");
 }
+
+// char buffer_overRide(int* x, int* y, int* grid[][y], char**buffer){
+
+// }
