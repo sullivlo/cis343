@@ -2,10 +2,7 @@
 //
 //
 //
-#include "file_utilities.h"
-#include "gameOfLife.h"
 
-#include <stdio.h>
 
 
 //allocae memory to the heap
@@ -41,6 +38,7 @@ int main(int argc,char* argv[])
     printf("Program Name Is: %s",argv[0]);
 
     if(argc==1)
+    {
 	//User should only pass a file path to the cammand line
         printf("\nNo Extra Command Line Argument Passed Other Than Program Name");
 
@@ -48,22 +46,23 @@ int main(int argc,char* argv[])
 
 	printf("\nLooking for file " );
 	
-	printf( nargv[0]);
-	
+	printf( argv[0]);
+    }
+
     //Should not need args more that 1
     if(argc>=2)
     {
         printf("\nNumber Of Arguments Passed: %d",argc);
         printf("\n----Following Are The Command Line Arguments Passed----");
         for(counter=0;counter<argc;counter++)
-            printf("\nargv[%d]: %s",counter,argv[counter]);
+            printf("\argv[%d]: %s",counter,argv[counter]);
 	
 	   
     }
-    //Call fileUtility.c to read in the file path in th args
+   //Call fileUtility.c to read in the file path in the args
 	
    //Cast string y vertices to int
-   int x = atoi(args[1]);
+   int x = atoi(argv[1]);
    //Cast string y vertices to int
    int y = atoi( argv[2]);
 
