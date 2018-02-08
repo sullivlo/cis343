@@ -12,6 +12,7 @@
 #include "gameOfLife.h"
 #include "file_utilities.h"
 
+
 int getMem(int** Mem)
 {
 //https://www.ics.uci.edu/~dan/class/165/notes/memory.html
@@ -20,16 +21,12 @@ int getMem(int** Mem)
 
 //Display the grid to the termanal window
 //drawGrid take a x, horizontal and a y, vertical to build a 2D grid
-void drawGrid(int x, int y) {
-    int grid[x][y];
-
+void drawGrid(int x, int y, int* grid[x][y]) {
     for (int i = 0; i < x; i++) {
         for (int j = 0; j < y; j++) {
-            grid[i][j] = 0;
-            printf("%2d", grid[i][j]);
+            printf("%d ", grid[i][j]);
         }
         printf("\n");
-
 
     }
 }
@@ -44,6 +41,9 @@ void drawGrid(int x, int y) {
 int main(int argc,char* argv[])
 {
     int fileSize;
+    int x;
+    int y;
+    int i = 0; 
     char* fileName;
     char* buffer;
     printf("Program Name Is: %s",argv[0]);
@@ -82,7 +82,55 @@ int main(int argc,char* argv[])
     //char* world = atoi( argv[1]);
 
     fileSize = read_file(fileName, &buffer);
-    printf("%s\n", buffer);
+    // printf("%s\n", buffer);
+    int count = 0;
+    x = atoi(strtok(buffer, " \n"));
+    y = atoi(strtok(NULL, " \n"));
+    int grid[x][y];
+    for(int i = 0; i < x; i++){
+        for(int j = 0; j < y; j++){
+            grid[i][j] = atoi(strtok(NULL, " \n"));
+        }
+    }
+    drawGrid(x, y, grid);
+    // for (int i = 0; i < x; i++) {
+    //     for (int j = 0; j < y; j++) {
+    //         printf("%d ", grid[i][j]);
+    //     }
+    //     printf("\n");
+
+
+    // }
+//     for(int i = 0; buffer[i] != ' '; i++) {
+//         printf("Hi1\n");
+//         if(i<2){
+//             printf("Hi2\n");
+//             x = strtok (&buffer[i],' ');
+//             printf("Hi3\n");
+//             printf("%s\n", x);
+//             i++;
+//         }
+//         else if(i<5){
+//             y = strtok (&buffer[i],' ');
+//             printf("%s\n", y);
+//             i++;
+//         }
+//         if(buffer[i]==' '){
+//             i++;
+//         }
+//         if(buffer[i+1]=='\0'){
+//             printf("%d\n", i);
+//         }
+//         if(i > 5){
+//             return 0;
+//         }
+
+// }
+    printf("\n");
+    // x = buffer[0];
+    // y = buffer[3];
+
+    printf("x = %d \ny = %d\n", x , y);
     //write_file(world, buffer, filesize);
 
     //int grid[][];

@@ -1,6 +1,6 @@
 //
 
-// Created by Louis Sullivan on 1/30/18.
+// Created by Louis Sullivan, Brendan Nahed on 1/30/18.
 
 //
 #include <stdio.h>

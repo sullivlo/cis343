@@ -32,7 +32,7 @@ int write_file( char* filename, char *buffer, int size){
     FILE* file2;
     file2 = fopen(filename, "w");
 
-    for (int k = size - 1; k >= 0; k--) {
+    for (int k = 0; k < size; k++) {
         char* x =  *(&buffer + k);
         fprintf(file2, "%s", x);
     }
