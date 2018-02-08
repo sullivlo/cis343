@@ -9,7 +9,7 @@
 #ifndef GAMEOFLIFE_H
 #define GAMEOFLIFE_H
 
-
+int adjacent_to (int x, int y, int grid[][y], int i, int j);
 int getMem(int** Mem);
 void drawGrid(int x, int y, int grid[][y]) ;
 int main(int argc,char* argv[]);
