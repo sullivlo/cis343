@@ -8,10 +8,15 @@
 #include "gameOfLife.h"
 #include "file_utilities.h"
 
-
+//read file takes a (char*) filename specified by the user in gameOfLife.c
+//The **buffer is empty the first call
+//When called again buffer will pass the char array of the grid
 
 int read_file( char* filename, char **buffer ){
-    //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-that-to-another-file
+
+    //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-
+    // that-to-another-file
+
     FILE* file1 = fopen(filename, "r");
     //gets the size of the file
     if(file1 == NULL){
@@ -28,7 +33,9 @@ int read_file( char* filename, char **buffer ){
     return size;
 }
 
-
+//File name is specified by the user in gameOfLife.c 
+//Buffer is the char array taken from the users txt file
+//size is from the users txt file when write file was called
 int write_file( char* filename, char *buffer, int size){
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-that-to-another-file
     printf("Made it");
