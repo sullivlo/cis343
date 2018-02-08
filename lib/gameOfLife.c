@@ -5,7 +5,7 @@
 
 
 
-//allocae memory to the heap
+//allocate memory to the heap
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -46,6 +46,7 @@ int main(int argc,char* argv[])
     int fileSize;
     char* fileName;
     char* buffer;
+    char **fileName;
     printf("Program Name Is: %s",argv[0]);
 
     if(argc==1)
@@ -71,8 +72,10 @@ int main(int argc,char* argv[])
         fileName = argv[1];
         
 
+
     }
     //Call fileUtility.c to read in the file path in the args
+
 
 
     //printf("%d",xy);
@@ -86,7 +89,6 @@ int main(int argc,char* argv[])
     //int grid[][];
     printf("\n");
 
-    //drawGrid(grid[][]);
     return 0;
 
 
