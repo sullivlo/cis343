@@ -11,7 +11,7 @@
 
 
 int getMem(int** Mem);
-void drawGrid(int x, int y, int* grid[x][y]) ;
+void drawGrid(int x, int y, int grid[][y]) ;
 int main(int argc,char* argv[]);
 
 #endif 
