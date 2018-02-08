@@ -2,6 +2,7 @@
 // Created by Louis Sullivan and Brendan Nahed on 1/30/18.
 //
 #include <stdio.h>
+
 #include <string.h>
 #include <stdlib.h>
 #include "gameOfLife.h"
@@ -16,6 +17,7 @@ int read_file( char* filename, char **buffer ){
     	return -1;
     }
     int size;
+
     fseek(file1,0L, SEEK_END);
     size=ftell(file1);
     *buffer = malloc(size * sizeof(char));
@@ -34,6 +36,7 @@ int write_file( char* filename, char *buffer, int size){
         char* x =  *(&buffer + k);
         fprintf(file2, "%s", x);
     }
+
     printf("%s", filename);
     return 1;
 
@@ -46,7 +49,7 @@ int write_file( char* filename, char *buffer, int size){
 //    f = fopen(filename, "r");
 //    if(!f){
 //        printf("File not found.");
-//        return 0; 
+//        return 0;
 //    }
 //    fseek(f, 0L, SEEK_END);
 //    size = ftell(f);
