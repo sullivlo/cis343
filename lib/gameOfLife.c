@@ -5,7 +5,7 @@
 
 
 
-//allocae memory to the heap
+//allocate memory to the heap
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -46,6 +46,7 @@ int main(int argc,char* argv[])
     int fileSize;
     char* fileName;
     char* buffer;
+    char **fileName;
     printf("Program Name Is: %s",argv[0]);
 
     if(argc==1)
@@ -67,15 +68,22 @@ int main(int argc,char* argv[])
     {
         printf("\nNumber Of Arguments Passed: %d",argc);
         printf("\n----Following Are The Command Line Arguments Passed----");
+        for(counter=0;counter<argc;counter++) {
+            printf("\nargv[%d]: %s", counter, argv[counter]);
+            printf("\n");
+            if(counter ==1)
+            {
+                fileName = argv[counter];
+                printf("%s", fileName);
 
-        printf("\nargv[%d]: %s", 1, argv[1]);
-                
-            fileName = argv[1];
-            printf("%s", fileName);
+
+            }
+        }
 
 
     }
     //Call fileUtility.c to read in the file path in the args
+
 
 
     printf("hi1: %s", fileName);
@@ -90,7 +98,6 @@ int main(int argc,char* argv[])
     //int grid[][];
     printf("\n");
 
-    //drawGrid(grid[][]);
     return 0;
 
 
