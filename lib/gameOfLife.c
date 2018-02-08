@@ -6,6 +6,7 @@
 
 
 //allocae memory to the heap
+#include <stdio.h>
 int getMem(int** Mem)
 {
 //https://www.ics.uci.edu/~dan/class/165/notes/memory.html
@@ -43,14 +44,14 @@ int main(int argc,char* argv[])
 
     if(argc==1)
     {
-	//User should only pass a file path to the cammand line
+        //User should only pass a file path to the cammand line
         printf("\nNo Extra Command Line Argument Passed Other Than Program Name");
 
-	printf("\nNumber Of Arguments Passed: %d",argc);
+        printf("\nNumber Of Arguments Passed: %d",argc);
 
-	printf("\nLooking for file " );
-	
-	printf( argv[0]);
+        printf("\nLooking for file " );
+
+        printf( argv[0]);
     }
 
     //Should not need args more that 1
@@ -58,24 +59,33 @@ int main(int argc,char* argv[])
     {
         printf("\nNumber Of Arguments Passed: %d",argc);
         printf("\n----Following Are The Command Line Arguments Passed----");
-        for(counter=0;counter<argc;counter++)
-            printf("\nargv[%d]: %c",counter,argv[counter]);
-	
-	   
-    }
-   //Call fileUtility.c to read in the file path in the args
-	
-  
-   printf("\n");
-   //printf("%d",xy);
 
-    char* world = atoi( argv[1]);
-    
-    filesize = read_file(world, &buffer);
-    write_file(world, buffer, filesize);
+        for(counter=0;counter<argc;counter++) {
+            printf("\nargv[%d]: %s", counter, argv[counter]);
+                printf("\n");
+                if(counter ==1)
+                {
+                    char *fileName = argv[counter];
+                    printf("%s", fileName);
+                }
+        }
+
+    }
+    //Call fileUtility.c to read in the file path in the args
+
 
     printf("\n");
+    //printf("%d",xy);
 
+    //char* world = atoi( argv[1]);
+
+    //filesize = write_file(world, &buffer);
+    //write_file(world, buffer, filesize);
+
+    //int grid[][];
+    printf("\n");
+
+    //drawGrid(grid[][]);
     return 0;
 
 
