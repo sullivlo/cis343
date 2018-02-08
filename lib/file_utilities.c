@@ -14,20 +14,13 @@ int read_file( char* filename, char **buffer ){
     file1 = fopen(filename, "r");
 
     //gets the size of the file
-    struct stat st;
-    stat(filename, &st);
-    int size = st.st_size;
-
-    buffer = malloc(size);
-    read(file1, &buffer, 1);
+    int size;
+    fseek(filename,0L, SEEK_END);
+    size=ftell(filename);
+    *buffer = malloc(size * sizeof(char));
+    rewind(filename);
+    fread(*buffer,size,1,filename);
     return size;
-
-
-    //
-    *buffer = malloc(size);
-
-
-    return 0;
 }
 
 

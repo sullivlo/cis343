@@ -59,7 +59,7 @@ int main(int argc,char* argv[])
         printf("\nNumber Of Arguments Passed: %d",argc);
         printf("\n----Following Are The Command Line Arguments Passed----");
         for(counter=0;counter<argc;counter++)
-            printf("\argv[%d]: %s",counter,argv[counter]);
+            printf("\nargv[%d]: %c",counter,argv[counter]);
 	
 	   
     }
@@ -71,13 +71,11 @@ int main(int argc,char* argv[])
 
     char* world = atoi( argv[1]);
     
-    filesize = write_file(world, &buffer);
+    filesize = read_file(world, &buffer);
     write_file(world, buffer, filesize);
 
-    int grid[][];
     printf("\n");
 
-    drawGrid(grid[][]);
     return 0;
 
 
