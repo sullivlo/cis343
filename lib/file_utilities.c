@@ -2,26 +2,25 @@
 // Created by Louis Sullivan and Brendan Nahed on 1/30/18.
 //
 #include <stdio.h>
-#include <stdlib.h>
+
 #include <string.h>
-
-
-#include "file_utilities.h"
+#include <stdlib.h>
 #include "gameOfLife.h"
-
+#include "file_utilities.h"
 
 int read_file( char* filename, char **buffer ){
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-that-to-another-file
     FILE* file1;
     file1 = fopen(filename, "r");
-
+    printf("hi");
     //gets the size of the file
     int size;
-    fseek(filename,0L, SEEK_END);
-    size=ftell(filename);
+
+    fseek(file1,0L, SEEK_END);
+    size=ftell(file1);
     *buffer = malloc(size * sizeof(char));
-    rewind(filename);
-    fread(*buffer,size,1,filename);
+    rewind(file1);
+    fread(*buffer,size,1,file1);
     return size;
 }
 
@@ -29,14 +28,15 @@ int read_file( char* filename, char **buffer ){
 int write_file( char* filename, char *buffer, int size){
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-that-to-another-file
     FILE* file2;
-    file2 = fopen(filename, 'w');
+    file2 = fopen(filename, "w");
 
     for (int k = size - 1; k >= 0; k--) {
-        int* x = &buffer + k;
+        char* x =  *(&buffer + k);
         fprintf(file2, "%s", x);
     }
-    printf("%c", filename);
-    return 0;
+
+    printf("%s", filename);
+    return 1;
 
 
     return 0;
