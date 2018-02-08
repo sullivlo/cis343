@@ -11,6 +11,7 @@
 //read file takes a (char*) filename specified by the user in gameOfLife.c
 //The **buffer is empty the first call
 //When called again buffer will pass the char array of the grid
+
 int read_file( char* filename, char **buffer ){
 
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-
@@ -37,6 +38,7 @@ int read_file( char* filename, char **buffer ){
 //size is from the users txt file when write file was called
 int write_file( char* filename, char *buffer, int size){
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-that-to-another-file
+    printf("Made it");
     FILE* file2;
     file2 = fopen(filename, "w");
 
