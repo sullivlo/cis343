@@ -2,6 +2,8 @@
 // Created by Louis Sullivan and Brendan Nahed on 1/30/18.
 //
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 #include "file_utilities.h"
@@ -14,20 +16,13 @@ int read_file( char* filename, char **buffer ){
     file1 = fopen(filename, "r");
 
     //gets the size of the file
-    struct stat st;
-    stat(filename, &st);
-    int size = st.st_size;
-
-    buffer = malloc(size);
-    read(file1, &buffer, 1);
+    int size;
+    fseek(filename,0L, SEEK_END);
+    size=ftell(filename);
+    *buffer = malloc(size * sizeof(char));
+    rewind(filename);
+    fread(*buffer,size,1,filename);
     return size;
-
-
-    //
-    *buffer = malloc(size);
-
-
-    return 0;
 }
 
 
@@ -40,8 +35,8 @@ int write_file( char* filename, char *buffer, int size){
         int* x = &buffer + k;
         fprintf(file2, "%s", x);
     }
-    printf(filename, '\O');
-    return 1;
+    printf("%c", filename);
+    return 0;
 
 
     return 0;
@@ -52,7 +47,7 @@ int write_file( char* filename, char *buffer, int size){
 //    f = fopen(filename, "r");
 //    if(!f){
 //        printf("File not found.");
-//        return 0; 
+//        return 0;
 //    }
 //    fseek(f, 0L, SEEK_END);
 //    size = ftell(f);
