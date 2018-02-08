@@ -7,6 +7,13 @@
 
 //allocae memory to the heap
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "file_utilities.h"
+#include "gameOfLife.h"
+
+
 int getMem(int** Mem)
 {
 //https://www.ics.uci.edu/~dan/class/165/notes/memory.html
@@ -40,6 +47,7 @@ int main(int argc,char* argv[])
     int counter;
     int filesize;
     char* buffer;
+    char **fileName;
     printf("Program Name Is: %s",argv[0]);
 
     if(argc==1)
@@ -61,12 +69,14 @@ int main(int argc,char* argv[])
         printf("\n----Following Are The Command Line Arguments Passed----");
         for(counter=0;counter<argc;counter++) {
             printf("\nargv[%d]: %s", counter, argv[counter]);
-                printf("\n");
-                if(counter ==1)
-                {
-                    char *fileName = argv[counter];
-                    printf("%s", fileName);
-                }
+            printf("\n");
+            if(counter ==1)
+            {
+                fileName = argv[counter];
+                printf("%s", fileName);
+
+
+            }
         }
 
     }
@@ -74,17 +84,10 @@ int main(int argc,char* argv[])
 
 
     printf("\n");
-    //printf("%d",xy);
 
-    //char* world = atoi( argv[1]);
+    //filesize =
+    // read_file(*fileName, &buffer);
 
-    //filesize = write_file(world, &buffer);
-    //write_file(world, buffer, filesize);
-
-    //int grid[][];
-    printf("\n");
-
-    //drawGrid(grid[][]);
     return 0;
 
 
