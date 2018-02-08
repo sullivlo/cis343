@@ -12,6 +12,7 @@
 #include "gameOfLife.h"
 #include "file_utilities.h"
 
+
 int getMem(int** Mem)
 {
 //https://www.ics.uci.edu/~dan/class/165/notes/memory.html
@@ -20,16 +21,12 @@ int getMem(int** Mem)
 
 //Display the grid to the termanal window
 //drawGrid take a x, horizontal and a y, vertical to build a 2D grid
-void drawGrid(int x, int y) {
-    int grid[x][y];
-
+void drawGrid(int x, int y, int grid[][y]) {
     for (int i = 0; i < x; i++) {
         for (int j = 0; j < y; j++) {
-            grid[i][j] = 0;
-            printf("%2d", grid[i][j]);
+            printf("%d ", grid[i][j]);
         }
         printf("\n");
-
 
     }
 }
@@ -44,19 +41,23 @@ void drawGrid(int x, int y) {
 int main(int argc,char* argv[])
 {
     int fileSize;
+    int x;
+    int y;
+    int i = 0; 
     char* fileName;
     char* buffer;
-    char **fileName;
+    char save;
+
     printf("Program Name Is: %s",argv[0]);
 
     if(argc==1)
     {
         //User should only pass a file path to the cammand line
-        printf("\nNo Extra Command Line Argument Passed Other Than Program Name");
+        printf("No Extra Command Line Argument Passed Other Than Program Name\n");
 
-        printf("\nNumber Of Arguments Passed: %d",argc);
+        printf("Number Of Arguments Passed: %d\n",argc);
 
-        printf("\nLooking for file " );
+        printf("Looking for file \n" );
 
         printf( "%s", argv[0]);
 
@@ -64,38 +65,45 @@ int main(int argc,char* argv[])
     }
 
     //Should not need args more that 1
-    if(argc==2)
+    if(argc>=2)
     {
-        printf("\nNumber Of Arguments Passed: %d",argc);
-        printf("\n----Following Are The Command Line Arguments Passed----");
-        for(counter=0;counter<argc;counter++) {
-            printf("\nargv[%d]: %s", counter, argv[counter]);
-            printf("\n");
-            if(counter ==1)
-            {
-                fileName = argv[counter];
-                printf("%s", fileName);
-
-
-            }
-        }
+        printf("Number Of Arguments Passed: %d\n",argc);
+        printf("----Following Are The Command Line Arguments Passed----\n");
+        printf("argv[%d]: %s\n", 1, argv[1]);
+        fileName = argv[1];
+        
 
 
     }
     //Call fileUtility.c to read in the file path in the args
 
-
-
-    printf("hi1: %s", fileName);
-    //printf("%d",xy);
-
-    //char* world = atoi( argv[1]);
-
     fileSize = read_file(fileName, &buffer);
-    printf("%s", buffer);
+    int count = 0;
+    x = atoi(strtok(buffer, " \n"));
+    y = atoi(strtok(NULL, " \n"));
+    int grid[x][y];
+    for(int i = 0; i < x; i++){
+        for(int j = 0; j < y; j++){
+            grid[i][j] = atoi(strtok(NULL, " \n"));
+        }
+    }
+    drawGrid(x, y, grid);
+
+    printf("Would you like to save this file: Y/N\n");
+    scanf("%c", &save);
+    if(save == 'Y'){
+        char* newFile;
+        printf("What would you like the file to be saved as?\n");
+        scanf("%s", &newFile);
+        write_file(newFile, buffer, filesize);
+        // realloc(newFile, 0);
+    }
+    printf("\n");
+    
+
+    printf("x = %d \ny = %d\n", x , y);
     //write_file(world, buffer, filesize);
 
-    //int grid[][];
     printf("\n");
 
     return 0;

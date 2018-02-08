@@ -12,8 +12,10 @@
 //The **buffer is empty the first call
 //When called again buffer will pass the char array of the grid
 int read_file( char* filename, char **buffer ){
+
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-
     // that-to-another-file
+
     FILE* file1 = fopen(filename, "r");
     //gets the size of the file
     if(file1 == NULL){
