@@ -9,10 +9,12 @@
 
 int read_file( char* filename, char **buffer ){
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-that-to-another-file
-    FILE* file1;
-    file1 = fopen(filename, "r");
-    printf("hi");
+    FILE* file1 = fopen(filename, "r");
     //gets the size of the file
+    if(file1 == NULL){
+    	printf("No File Found.\n");
+    	return -1;
+    }
     int size;
     fseek(file1,0L, SEEK_END);
     size=ftell(file1);
