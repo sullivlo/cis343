@@ -41,14 +41,17 @@ int adjacent_to (int x, int y, int grid[][y], int i, int j) {
     //Checks around the Cell
     for (int k=i-1; k<=i+1; k++) {
         for (int l=j-1; l<=j+1; l++){
-            if(i != k && j != l){
-                if((0<i && 0<j)|| (x>i && y>j)){
-                    if(grid[k][l]==1){
-                       count++;
-                    }
-                }    
+            if((-1<k && -1<l) && (x>k && y>l)){
+                printf("grid[%d][%d] = %d count for position = %d.\n", k, l, grid[k][l], count);
+                if(grid[k][l]==1){
+                   count++;
+                }
+                 
             }
         }
+    }
+    if(grid[i][j]==1){
+        count--;
     }
     printf("grid[%d][%d] = %d count for position = %d.\n", i, j, grid[i][j], count);
     return count;
@@ -139,6 +142,7 @@ int main(int argc,char* argv[])
         // realloc(newFile, 0);
     }
     grid[x][y] = evolution(x, y, grid);
+    // adjacent_to(x, y, grid, 1, 1);
     drawGrid(x, y, grid);
     printf("\n");
     
