@@ -68,10 +68,22 @@ int main(int argc,char* argv[])
         printf("\nNumber Of Arguments Passed: %d",argc);
         printf("\n----Following Are The Command Line Arguments Passed----");
 
+<<<<<<< HEAD
         printf("\nargv[%d]: %s", 1, argv[1]);
                 
             fileName = argv[1];
             printf("%s", fileName);
+=======
+        for(counter=0;counter<argc;counter++) {
+            printf("\nargv[%d]: %s", counter, argv[counter]);
+                printf("\n");
+                if(counter ==1)
+                {
+                    char *fileName = argv[counter];
+                    printf("%s", fileName);
+                }
+        }
+>>>>>>> master
 
     }
     //Call fileUtility.c to read in the file path in the args
