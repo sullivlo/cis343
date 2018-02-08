@@ -6,6 +6,7 @@
 
 
 //allocae memory to the heap
+#include <stdio.h>
 int getMem(int** Mem)
 {
 //https://www.ics.uci.edu/~dan/class/165/notes/memory.html
@@ -58,9 +59,15 @@ int main(int argc,char* argv[])
     {
         printf("\nNumber Of Arguments Passed: %d",argc);
         printf("\n----Following Are The Command Line Arguments Passed----");
-        for(counter=0;counter<argc;counter++)
-            printf("\nargv[%d]: %s",counter,argv[counter]);
-
+        for(counter=0;counter<argc;counter++) {
+            printf("\nargv[%d]: %s", counter, argv[counter]);
+                printf("\n");
+                if(counter ==1)
+                {
+                    char *fileName = argv[counter];
+                    printf("%s", fileName);
+                }
+        }
 
     }
     //Call fileUtility.c to read in the file path in the args
