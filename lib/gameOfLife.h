@@ -2,7 +2,11 @@
 // Created by Louis Sullivan on 1/30/18.
 //
 
-#ifndef CIS343_GAMEOFLIFE_H
-#define CIS343_GAMEOFLIFE_H
+#ifndef GAMEOFLIFE_H
+#define GAMEOFLIFE_H
 
-#endif //CIS343_GAMEOFLIFE_H
+int getMem(int** Mem);
+void drawGrid(int x, int y);
+int main(int argc,char* argv[]);
+
+#endif 

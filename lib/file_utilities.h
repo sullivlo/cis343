@@ -2,7 +2,10 @@
 // Created by Louis Sullivan on 1/30/18.
 //
 
-#ifndef CIS343_FILE_UTILITIES_H
-#define CIS343_FILE_UTILITIES_H
+#ifndef FILE_UTILITIES_H
+#define FILE_UTILITIES_H
 
-#endif //CIS343_FILE_UTILITIES_H
+int read_file( char* filename, char **buffer );
+int write_file( char* filename, char *buffer, int size);
+
+#endif

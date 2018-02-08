@@ -7,9 +7,15 @@
 
 //allocae memory to the heap
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "gameOfLife.h"
+#include "file_utilities.h"
+
 int getMem(int** Mem)
 {
 //https://www.ics.uci.edu/~dan/class/165/notes/memory.html
+    return 0;
 }
 
 //Display the grid to the termanal window
@@ -37,8 +43,8 @@ void drawGrid(int x, int y) {
 
 int main(int argc,char* argv[])
 {
-    int counter;
-    int filesize;
+    int fileSize;
+    char* fileName;
     char* buffer;
     printf("Program Name Is: %s",argv[0]);
 
@@ -51,35 +57,33 @@ int main(int argc,char* argv[])
 
         printf("\nLooking for file " );
 
-        printf( argv[0]);
+        printf( "%s", argv[0]);
+
+        return 0;
     }
 
     //Should not need args more that 1
-    if(argc>=2)
+    if(argc==2)
     {
         printf("\nNumber Of Arguments Passed: %d",argc);
         printf("\n----Following Are The Command Line Arguments Passed----");
 
-        for(counter=0;counter<argc;counter++) {
-            printf("\nargv[%d]: %s", counter, argv[counter]);
-                printf("\n");
-                if(counter ==1)
-                {
-                    char *fileName = argv[counter];
-                    printf("%s", fileName);
-                }
-        }
+        printf("\nargv[%d]: %s", 1, argv[1]);
+                
+            fileName = argv[1];
+            printf("%s", fileName);
 
     }
     //Call fileUtility.c to read in the file path in the args
 
 
-    printf("\n");
+    printf("hi1: %s", fileName);
     //printf("%d",xy);
 
     //char* world = atoi( argv[1]);
 
-    //filesize = write_file(world, &buffer);
+    fileSize = read_file(fileName, &buffer);
+    printf("%s", buffer);
     //write_file(world, buffer, filesize);
 
     //int grid[][];
