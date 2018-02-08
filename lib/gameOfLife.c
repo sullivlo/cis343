@@ -16,7 +16,6 @@ int getMem(int** Mem)
 void drawGrid(int x, int y) {
     int grid[x][y];
 
-
     for (int i = 0; i < x; i++) {
         for (int j = 0; j < y; j++) {
             grid[i][j] = 0;
@@ -28,6 +27,9 @@ void drawGrid(int x, int y) {
     }
 }
 
+
+
+
 // reference https://www.cprogramming.com/tutorial/lesson14.html
 //Main will take 1 argument, of type string
 //the file path to the grid txt file
@@ -35,6 +37,8 @@ void drawGrid(int x, int y) {
 int main(int argc,char* argv[])
 {
     int counter;
+    int filesize;
+    char* buffer;
     printf("Program Name Is: %s",argv[0]);
 
     if(argc==1)
@@ -61,21 +65,20 @@ int main(int argc,char* argv[])
     }
    //Call fileUtility.c to read in the file path in the args
 	
-   //Cast string y vertices to int
-   int x = atoi(argv[1]);
-   //Cast string y vertices to int
-   int y = atoi( argv[2]);
-
+  
    printf("\n");
    //printf("%d",xy);
 
-   drawGrid(x,y);
-   return 0;
+    char* world = atoi( argv[1]);
     
-	
+    filesize = write_file(world, &buffer);
+    write_file(world, buffer, filesize);
 
+    int grid[][];
+    printf("\n");
 
-
+    drawGrid(grid[][]);
+    return 0;
 
 
 }
