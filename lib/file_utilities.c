@@ -39,16 +39,28 @@ int read_file( char* filename, char **buffer ){
 //size is from the users txt file when write file was called
 int write_file( char* filename, char *buffer, int size){
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-that-to-another-file
-    printf("Made it/n");
-    puts(&filename);
+    //puts(&filename);
     FILE* file2;
     file2 = fopen(&filename, "w");
-
+   
+    
+   
     for (int k = 0; k < size; k++) {
-        char* x =  *(&buffer + k);
-        fprintf(file2, "%s ", x);
-    }
-    printf("%s", filename);
+        
+       char *x =  (buffer+k);
+       puts("here is x ");
+       printf("%s\n", x);
+       puts("here is k ");
+       printf("%d\n", k);
+
+       //fprintf(file2, "%s ", x );
+
+   }
+        
+      //  fprintf(file2, "%c ", x);
+    
+    
+    fclose(file2);
 
     return 0;
 
