@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include "gameOfLife.h"
 #include "file_utilities.h"
+#include "game.h"
 
 //read file takes a (char*) filename specified by the user in gameOfLife.c
 //The **buffer is empty the first call
