@@ -31,6 +31,7 @@ int read_file( char* filename, char **buffer ){
     *buffer = malloc(size * sizeof(char));
     rewind(file1);
     fread(*buffer,size,1,file1);
+    fclose(filename);
     return size;
 }
 
