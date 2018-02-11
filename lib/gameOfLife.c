@@ -52,33 +52,20 @@ int main(int argc,char* argv[])
     //Call fileUtility.c to read in the file path in the args
     //Tokenizing the Buffer File.
     fileSize = read_file(fileName, &buffer);
-    x = atoi(strtok(buffer, " \n"));
-    y = atoi(strtok(NULL, " \n"));
-    //Creates the grid and populates the grid.
+    
+    
+    // //Creates the grid and populates the grid.
     int** grid;
-
-    // Malloc the grid.
-    // getMem(&x, &y, &grid);
-    grid = (int**) malloc(x * sizeof(int*));
-    for(int i =0 ; i < y; ++i) {
-        grid[i] = (int*) malloc(y * sizeof(int));
-    }
-    for(int i = 0; i < x; i++){
-        for(int j = 0; j < y; j++){
-            // *(*(grid+i)+j) = atoi(strtok(NULL, " \n"));
-            (*(*(grid+i)+j)) = atoi(strtok(NULL, " \n"));
-        }
-    }
-    printf("%d\n", &buffer);
+    printf("%s\n", buffer);
+    tokenizer(&x, &y, &buffer, &grid);
     free(buffer);
-    printf("%d\n", &buffer);
+    printf("%s\n", buffer);
     drawGrid(&x, &y, grid); 
     printf("Hit P to start.\n");
     scanf("%c", &save);
     resp = save;
     while(toupper(quit)!= 'Q'){  
-        printf("%c\n", save);
-        save = 'q';
+        printf("%c\n", resp);
         //Drawing the grid.
         //Check to see if User wants to save before evolution.
         //If yes enters into process to write the file.
@@ -89,10 +76,10 @@ int main(int argc,char* argv[])
             char* newFile;
             printf("What would you like the file to be saved as?\n");
             scanf("%s", &newFile);
-            puts(&newFile);
+            newBuff(&x, &y, &buffer, grid);
+            write_file(&newFile, buffer, fileSize);
             prompt(&save);
             resp = save;
-            // write_file(newFile, buffer, fileSize);
         }
         else if(toupper(resp) == 'L'){
             printf("Hi2\n");
@@ -103,20 +90,19 @@ int main(int argc,char* argv[])
 
         }
         else if(toupper(resp) == 'P'){
-            int* tempGrid;
-            evolution(&x, &y, &grid, &tempGrid);
+            evolution(&x, &y, &grid);
             drawGrid(&x, &y, grid);
             prompt(&save);
             resp = save;
         }
-        else if (resp =='\n'){
-            save = ' ';
-            scanf("%c", &save);
+        else{
+            printf("Not a valid command. Try again.");
+            prompt(&save);
+            resp = save;
         }
         
     }
     freeMem(&x, &y, &grid);
-    free(buffer);
 
     return 0;
 }
