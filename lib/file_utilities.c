@@ -53,16 +53,13 @@ int write_file( char* filename, char *buffer, int size){
     FILE* file2;
     file2 = fopen(&filename, "w");
 
-    printf("%s\n","------- In file util --------" );
-    for (int k = 0; k < size; k++) {
-       
-       char *x =  (buffer+k);
-    
-       fprintf(file2, "%s ", x );
-
-   }
+    // char * x =  (buffer + 0);
+    fprintf(file2, "%s ", buffer);
+    printf("%s", filename);
     fclose(file2);
 
+
+    fclose(file2);
     return 0;
 
 }

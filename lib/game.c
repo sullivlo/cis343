@@ -30,13 +30,12 @@ void freeMem(int *x, int *y, int*** grid){
     for(int i = (*y); i < 10;++i){
         printf("i = %d\n holds: %d", i, (*grid)[i]);
         free((*grid)[i]);
+    }
+
     
 }
  // free starting pointer
  free ((*grid));
- printf("%d\n", &grid);
- drawGrid(x, y, *grid);
- 
 }
 
 //ask user to continue playing, save, load, or quit the game
@@ -96,11 +95,8 @@ int adjacent_to (int* x, int* y, int** grid, int i, int j) {
 }
 
 //Evolves the grid and creates a temperary grid. 
-int evolution(int* x, int* y, int*** grid,int** tempGrid){
-    tempGrid = (int**) malloc((*x) * sizeof(int*));
-    for(int i =0 ; i < *y; ++i) {
-        tempGrid[i] = (int*) malloc((*y) * sizeof(int));
-    }
+int evolution(int* x, int* y, int*** grid, int** tempGrid){
+    getMem(x, y, &tempGrid);
     for(int i = 0; i < *x; i++){
         for (int j = 0; j < *y; j++){
             //Living cells survive another evolution 

@@ -28,6 +28,7 @@ int main(int argc,char* argv[])
     int i = 0; 
     char* fileName;
     char* buffer;
+    int** grid;
     char save;
     char quit;
     char resp;
@@ -53,24 +54,11 @@ int main(int argc,char* argv[])
     //Call fileUtility.c to read in the file path in the args
     //Tokenizing the Buffer File.
     fileSize = read_file(fileName, &buffer);
-    x = atoi(strtok(buffer, " \n"));
-    y = atoi(strtok(NULL, " \n"));
-    //Creates the grid and populates the grid.
-    int** grid;
-
-    // Malloc the grid.
-    // getMem(&x, &y, &grid);
-    grid = (int**) malloc(x * sizeof(int*));
-    for(int i =0 ; i < y; ++i) {
-        grid[i] = (int*) malloc(y * sizeof(int));
-    }
-    for(int i = 0; i < x; i++){
-        for(int j = 0; j < y; j++){
-            // *(*(grid+i)+j) = atoi(strtok(NULL, " \n"));
-            (*(*(grid+i)+j)) = atoi(strtok(NULL, " \n"));
-        }
-    }
-    printf("%d\n", &buffer);
+    
+    // //Creates the grid and populates the grid.
+    
+    printf("%s\n", buffer);
+    tokenizer(&x, &y, &buffer, &grid);
     free(buffer);
     printf("%d\n", &buffer);
     drawGrid(&x, &y, grid); 
@@ -78,8 +66,9 @@ int main(int argc,char* argv[])
     scanf("%c", &save);
     resp = save;
     while(toupper(quit)!= 'Q'){  
-        //printf("%c\n", save);
-       // printf("%s\n", resp);
+        printf("%c\n", resp);
+        printf("What is going on\n");
+
         //Drawing the grid.
         //Check to see if User wants to save before evolution.
         //If yes enters into process to write the file.
@@ -95,23 +84,24 @@ int main(int argc,char* argv[])
             resp = save;
             write_file(newFile, buffer, fileSize);
         }
-        else if((toupper(resp)) == 'L'){
-            buffer_overRide(&x, &y, &fileSize, grid, &buffer);
-            printf("%s\n", "What is the file named? ");
-            //prompt(&save);
-            char * LoadFileName;
-            scanf("%s", &LoadFileName);
-            
-             
-            LoadFileSize = read_file(&LoadFileName, &buffer);
-            printf("%s\n", "after load");
+        else if(toupper(resp) == 'L'){
+            char* loadFile;
+            printf("What would you like the file to saved as?\n");
+            scanf("%s", &loadFile);
+            fileSize = read_file(loadFile, &buffer);
+            freeMem(&x, &y, &grid);
+            tokenizer(&x, &y, &buffer, &grid);
+            free(buffer);
+            // buffer_overRide(&x, &y, &fileSize, grid, &buffer);
+            drawGrid(&x, &y, grid);
             prompt(&save);
             resp = save;
 
         }
         else if(toupper(resp) == 'P'){
+            
+            evolution(&x, &y, &grid);
             int* tempGrid;
-            evolution(&x, &y, &grid, &tempGrid);
             drawGrid(&x, &y, grid);
             prompt(&save);
             resp = save;
