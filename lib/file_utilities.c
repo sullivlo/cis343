@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include "gameOfLife.h"
 #include "file_utilities.h"
+#include "game.h"
 
 //read file takes a (char*) filename specified by the user in gameOfLife.c
 //The **buffer is empty the first call
@@ -20,8 +21,8 @@ int read_file( char* filename, char **buffer ){
     FILE* file1 = fopen(filename, "r");
     //gets the size of the file
     if(file1 == NULL){
-    	printf("No File Found.\n");
-    	return -1;
+        printf("No File Found.\n");
+        return -1;
     }
     int size;
 
@@ -38,33 +39,15 @@ int read_file( char* filename, char **buffer ){
 //size is from the users txt file when write file was called
 int write_file( char* filename, char *buffer, int size){
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-that-to-another-file
-    //puts(&filename);
+    printf("%s\n", buffer);
     FILE* file2;
-    file2 = fopen(&filename, "w");
-   
-    
-   
-    for (int k = 0; k < size; k++) {
-        
-       char *x =  (buffer+k);
-       puts("here is x ");
-       printf("%s\n", x);
-       puts("here is k ");
-       printf("%d\n", k);
+    file2 = fopen(filename, "w");
 
-       //fprintf(file2, "%s ", x );
-
-   }
-        
-      //  fprintf(file2, "%c ", x);
-    
-    
-    fclose(file2);
+    // char * x =  (buffer + 0);
+    fprintf(file2, "%s ", buffer);
+    printf("%s", filename);
 
     return 0;
 
 }
 
-// char buffer_overRide(int* x, int* y, int* grid[][y], char**buffer){
-
-// }
