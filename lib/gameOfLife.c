@@ -28,7 +28,6 @@ int main(int argc,char* argv[])
     int i = 0; 
     char* fileName;
     char* buffer;
-    int** grid;
     char save;
     char quit;
     char resp;
@@ -55,8 +54,9 @@ int main(int argc,char* argv[])
     //Tokenizing the Buffer File.
     fileSize = read_file(fileName, &buffer);
     
-    // //Creates the grid and populates the grid.
     
+    // //Creates the grid and populates the grid.
+    int** grid;
     printf("%s\n", buffer);
     tokenizer(&x, &y, &buffer, &grid);
     free(buffer);
@@ -67,7 +67,6 @@ int main(int argc,char* argv[])
     resp = save;
     while(toupper(quit)!= 'Q'){  
         printf("%c\n", resp);
-        printf("What is going on\n");
 
         //Drawing the grid.
         //Check to see if User wants to save before evolution.
@@ -79,27 +78,26 @@ int main(int argc,char* argv[])
             char* newFile;
             printf("What would you like the file to be saved as?\n");
             scanf("%s", &newFile);
-            puts(&newFile);
+            write_file(newFile, buffer, fileSize);
             prompt(&save);
             resp = save;
-            write_file(newFile, buffer, fileSize);
         }
         else if(toupper(resp) == 'L'){
             char* loadFile;
-            printf("What would you like the file to saved as?\n");
+            printf("What would you like to save the file as?\n");
             scanf("%s", &loadFile);
-            fileSize = read_file(loadFile, &buffer);
+            printf("%s\n", &loadFile);
+            fileSize = read_file(&loadFile, &buffer);
             freeMem(&x, &y, &grid);
             tokenizer(&x, &y, &buffer, &grid);
             free(buffer);
-            // buffer_overRide(&x, &y, &fileSize, grid, &buffer);
             drawGrid(&x, &y, grid);
             prompt(&save);
             resp = save;
 
+
         }
         else if(toupper(resp) == 'P'){
-            
             evolution(&x, &y, &grid);
             int* tempGrid;
             drawGrid(&x, &y, grid);
@@ -107,19 +105,16 @@ int main(int argc,char* argv[])
             resp = save;
         }
          else  {
-            prompt("please try again");
-            save = 'Wrong';
+            printf("Not a valid command. Try again.");
+            prompt(&save);
             scanf("%c", &save);
         }
         
     }
-    printf("%s\n", "____________    in main     ________________");
     freeMem(&x, &y, &grid);
-    free(buffer);
 
     return 0;
 }
-
 
 
 
