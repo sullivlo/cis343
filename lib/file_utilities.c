@@ -17,7 +17,8 @@ int read_file( char* filename, char **buffer ){
 
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-
     // that-to-another-file
-
+    printf("hi\n");
+    printf("%s\n", filename);
     FILE* file1 = fopen(filename, "r");
     //gets the size of the file
     if(file1 == NULL){
@@ -47,13 +48,9 @@ int write_file( char* filename, char *buffer, int size){
     // char * x =  (buffer + 0);
     fprintf(file2, "%s ", buffer);
     printf("%s", filename);
-<<<<<<< HEAD
-    fclose(file2);
-=======
 
     fclose(file2);
 
->>>>>>> refs/remotes/origin/nahed
     return 0;
 
 }

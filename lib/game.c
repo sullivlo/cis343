@@ -53,24 +53,21 @@ void newBuff(int* x, int *y, char** buffer, int** grid){
 }
 
 void freeMem(int* x, int* y, int*** grid){
-    printf("%d\n", &grid);
   //free columns
     for(int i = (*y); i >= 0;--i){
         free((*grid)[i]);
         printf("i = %d\n", i);
         drawGrid(x, y, *grid);
     }
- // free whole thing
+    
  free ((*grid));
  printf("%d\n", &grid);
- drawGrid(x, y, *grid);
  
 }
 
 void getMem(int* x, int* y, int*** grid){
     *grid = (int**) malloc((*x) * sizeof(int*));
     for(int i =0 ; i < *y; ++i) {
-        printf("%d", i);
         (*grid)[i] = (int*) malloc((*y) * sizeof(int));
     }
 }
@@ -145,7 +142,8 @@ int adjacent_to (int* x, int* y, int** grid, int i, int j) {
 }
 
 //Evolves the grid and creates a temperary grid. 
-int evolution(int* x, int* y, int*** grid, int** tempGrid){
+int evolution(int* x, int* y, int*** grid){
+    int** tempGrid;
     getMem(x, y, &tempGrid);
     for(int i = 0; i < *x; i++){
         for (int j = 0; j < *y; j++){
