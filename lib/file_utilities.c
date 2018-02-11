@@ -53,6 +53,4 @@ int write_file( char* filename, char *buffer, int size){
 
 }
 
-// char buffer_overRide(int* x, int* y, int* grid[][y], char**buffer){
 
-// }

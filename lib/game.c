@@ -14,13 +14,12 @@
 #include "game.h"
 
 
-// int getMem(int* x, int* y, int** mem)
+// int getMem(int* x, int* y, int*** grid)
 // {
 // //https://www.ics.uci.edu/~dan/class/165/notes/memory.html
-//     mem = (int**) malloc((*x) * sizeof(int*));
-//     mem[0] = (int*) malloc((*y) * (*x) *sizeof(int));
-//     for(int i = 0; i < *y; i++){
-//         mem[i] = (*mem + (*y) * i);
+//     *grid = (int**) malloc((*x) * sizeof(int*));
+//     for(int i =0 ; i < *y; ++i) {
+//         *grid[i] = (int*) malloc((*y) * sizeof(int));
 //     }
 //     return 0;
 // }
@@ -42,17 +41,49 @@ void drawGrid(int* x, int* y, int** grid) {
 }
 
 void freeMem(int *x, int *y, int*** grid){
+    printf("%d\n", &grid);
   //free columns
-  printf("Hi1\n");
-    printf("Hi2\n");
-    free(*grid);
-    printf("Hi3\n");
+    for(int i = (*y); i >= 0;--i){
+        printf("i = %d\n holds: %d", i, (*grid)[i]);
+        free((*grid)[i]);
+    
+}
  // free whole thing
-  printf("Hi4\n");
-  printf("%p\n", **grid);
-  drawGrid(x, y, *grid);
- free (**grid);
- printf("Hi5\n");
+ free ((*grid));
+ printf("%d\n", &grid);
+ drawGrid(x, y, *grid);
+ 
+}
+
+void prompt(char* response){
+    *response = ' ';
+    printf("\n");
+    printf("Would you like to save this file: S\n");
+    printf("Would you like to load a file: L\n");
+    printf("Would you like to quit the game?: Q\n");
+    printf("Or to continue playing. P\n");
+    scanf("%s", response);
+}
+
+int buffer_overRide(int* x, int* y, int* size, int** grid, char** buffer){    
+    drawGrid(x , y, grid);
+    printf("%s\n", *buffer);
+    printf("%s\n", *(buffer+2));
+    *buffer = malloc((*size) * sizeof(char));
+    *buffer[0] = *(*(buffer + *x + ' ')); 
+    *buffer[0] = *(*(buffer + *y + ' '+ '\n'));
+    drawGrid(x , y, grid);
+    printf("Hi4\n");
+    for(int i = 1; i < (*x)+1; ++i){
+        for(int j = 0; j < *y; ++j){
+            printf("Hi3\n");
+            *buffer[i] = *(*(buffer + ' '+ *(*(grid+(i-1))+j)));
+            printf("%d\n", *(*(grid+(i-1))+j));
+        }
+        *buffer[i] = *(*(buffer + ' '+ '\n'));
+        printf("Hi5\n");
+    }
+    return 0;
 }
 
 //Looks for the Adjacent living blocks.
@@ -79,9 +110,8 @@ int adjacent_to (int* x, int* y, int** grid, int i, int j) {
 //Evolves the grid and creates a temperary grid. 
 int evolution(int* x, int* y, int*** grid,int** tempGrid){
     tempGrid = (int**) malloc((*x) * sizeof(int*));
-    tempGrid[0] = (int*) malloc((*y) * (*x) *sizeof(int));
-    for(int i = 0; i < *y; i++){
-        tempGrid[i] = (*tempGrid + (*y) * i);
+    for(int i =0 ; i < *y; ++i) {
+        tempGrid[i] = (int*) malloc((*y) * sizeof(int));
     }
     for(int i = 0; i < *x; i++){
         for (int j = 0; j < *y; j++){
@@ -96,6 +126,9 @@ int evolution(int* x, int* y, int*** grid,int** tempGrid){
             else if ((adj<2 || adj>3) && (*(*(*grid+i)+j))==1){
                 tempGrid[i][j] = -1;
             }
+            else if((*(*(*grid+i)+j))== -1){
+                tempGrid[i][j] = -1;
+            }
             else{
                 tempGrid[i][j] = 0;
             }
@@ -103,12 +136,11 @@ int evolution(int* x, int* y, int*** grid,int** tempGrid){
             // printf("tempGrid[%d][%d] = %d\n", i, j, tempGrid[i][j]);
         }
     }
-    drawGrid(x, y, tempGrid);
     for(int i = 0; i < *x; i++){
         for (int j = 0; j < *y; j++){
             (*(*(*grid+i)+j)) = tempGrid[i][j];
         }
     }
-    freeMem(x,y, &tempGrid);
+    freeMem(x, y, &tempGrid);
     return 0;
 }

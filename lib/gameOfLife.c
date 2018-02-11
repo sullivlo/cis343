@@ -28,6 +28,8 @@ int main(int argc,char* argv[])
     char* fileName;
     char* buffer;
     char save;
+    char quit;
+    char resp;
     printf("Program Name Is: %s",argv[0]);
     if(argc==1)
     {
@@ -54,53 +56,69 @@ int main(int argc,char* argv[])
     y = atoi(strtok(NULL, " \n"));
     //Creates the grid and populates the grid.
     int** grid;
+
+    // Malloc the grid.
+    // getMem(&x, &y, &grid);
     grid = (int**) malloc(x * sizeof(int*));
-    grid[0] = (int*) malloc(y * x *sizeof(int));
-    for(int i = 0; i < y; i++){
-        grid[i] = (*grid + y * i);
+    for(int i =0 ; i < y; ++i) {
+        grid[i] = (int*) malloc(y * sizeof(int));
     }
-    // getMem(x, y, &grid);
     for(int i = 0; i < x; i++){
         for(int j = 0; j < y; j++){
             // *(*(grid+i)+j) = atoi(strtok(NULL, " \n"));
-            grid[i][j] = atoi(strtok(NULL, " \n"));
+            (*(*(grid+i)+j)) = atoi(strtok(NULL, " \n"));
         }
-    } 
-    while(save!= 'Q'){  
+    }
+    printf("%d\n", &buffer);
+    free(buffer);
+    printf("%d\n", &buffer);
+    drawGrid(&x, &y, grid); 
+    printf("Hit P to start.\n");
+    scanf("%c", &save);
+    resp = save;
+    while(toupper(quit)!= 'Q'){  
+        printf("%c\n", save);
+        save = 'q';
         //Drawing the grid.
-        drawGrid(&x, &y, grid);
         //Check to see if User wants to save before evolution.
         //If yes enters into process to write the file.
-        if(save == 'Y'){
+        if(toupper(resp)=='Q'){
+            quit = 'Q';
+        }
+        else if(toupper(resp) == 'S'){
             char* newFile;
             printf("What would you like the file to be saved as?\n");
             scanf("%s", &newFile);
             puts(&newFile);
+            prompt(&save);
+            resp = save;
             // write_file(newFile, buffer, fileSize);
         }
-        else if(save == 'L'){
-            //TODO 
-        }
-        else{
-        int* tempGrid;
-        evolution(&x, &y, &grid, &tempGrid);
-        drawGrid(&x, &y, grid);
-        printf("\n");
-        free(buffer);
-        freeMem(&x,&y, &grid);
+        else if(toupper(resp) == 'L'){
+            printf("Hi2\n");
+            buffer_overRide(&x, &y, &fileSize, grid, &buffer);
+            printf("%s\n", buffer);
+            prompt(&save);
+            resp = save;
 
-        printf("x = %d \ny = %d\n", x , y);
-        printf("\n");
-        printf("Would you like to save this file: Y\n");
-        printf("Would you like to load a file: L\n");
-        printf("Would you like to quit the game?: Q\n");
-        scanf("%c", &save);
+        }
+        else if(toupper(resp) == 'P'){
+            int* tempGrid;
+            evolution(&x, &y, &grid, &tempGrid);
+            drawGrid(&x, &y, grid);
+            prompt(&save);
+            resp = save;
+        }
+        else if (resp =='\n'){
+            save = ' ';
+            scanf("%c", &save);
+        }
+        
     }
-}
+    freeMem(&x, &y, &grid);
+    free(buffer);
 
     return 0;
-
-
 }
 
 
