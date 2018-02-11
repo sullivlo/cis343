@@ -46,7 +46,7 @@ int write_file( char* filename, char *buffer, int size){
     // char * x =  (buffer + 0);
     fprintf(file2, "%s ", buffer);
     printf("%s", filename);
-
+    fclose(file2);
     return 0;
 
 }

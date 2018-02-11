@@ -60,11 +60,6 @@ void freeMem(int* x, int* y, int*** grid){
         printf("i = %d\n", i);
         drawGrid(x, y, *grid);
     }
-    // for(int i = (*y); i >= 0;--i){
-    //     free((*grid)[i]);ß
-    //     printf("i = %d\n", i);
-    //     drawGrid(x, y, *grid);
-    // }
  // free whole thing
  free ((*grid));
  printf("%d\n", &grid);
@@ -150,8 +145,7 @@ int adjacent_to (int* x, int* y, int** grid, int i, int j) {
 }
 
 //Evolves the grid and creates a temperary grid. 
-int evolution(int* x, int* y, int*** grid){
-    int** tempGrid;
+int evolution(int* x, int* y, int*** grid, int** tempGrid){
     getMem(x, y, &tempGrid);
     for(int i = 0; i < *x; i++){
         for (int j = 0; j < *y; j++){

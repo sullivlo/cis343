@@ -27,6 +27,7 @@ int main(int argc,char* argv[])
     int i = 0; 
     char* fileName;
     char* buffer;
+    int** grid;
     char save;
     char quit;
     char resp;
@@ -53,9 +54,8 @@ int main(int argc,char* argv[])
     //Tokenizing the Buffer File.
     fileSize = read_file(fileName, &buffer);
     
-    
     // //Creates the grid and populates the grid.
-    int** grid;
+    
     printf("%s\n", buffer);
     tokenizer(&x, &y, &buffer, &grid);
     free(buffer);
@@ -66,6 +66,7 @@ int main(int argc,char* argv[])
     resp = save;
     while(toupper(quit)!= 'Q'){  
         printf("%c\n", resp);
+        printf("What is going on\n");
         //Drawing the grid.
         //Check to see if User wants to save before evolution.
         //If yes enters into process to write the file.
@@ -82,14 +83,21 @@ int main(int argc,char* argv[])
             resp = save;
         }
         else if(toupper(resp) == 'L'){
-            printf("Hi2\n");
-            buffer_overRide(&x, &y, &fileSize, grid, &buffer);
-            printf("%s\n", buffer);
+            char* loadFile;
+            printf("What would you like the file to saved as?\n");
+            scanf("%s", &loadFile);
+            fileSize = read_file(loadFile, &buffer);
+            freeMem(&x, &y, &grid);
+            tokenizer(&x, &y, &buffer, &grid);
+            free(buffer);
+            // buffer_overRide(&x, &y, &fileSize, grid, &buffer);
+            drawGrid(&x, &y, grid);
             prompt(&save);
             resp = save;
 
         }
         else if(toupper(resp) == 'P'){
+            
             evolution(&x, &y, &grid);
             drawGrid(&x, &y, grid);
             prompt(&save);
