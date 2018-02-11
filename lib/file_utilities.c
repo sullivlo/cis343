@@ -31,6 +31,7 @@ int read_file( char* filename, char **buffer ){
     *buffer = malloc(size * sizeof(char));
     rewind(file1);
     fread(*buffer,size,1,file1);
+    fclose(file1);
     return size;
 }
 
@@ -46,6 +47,8 @@ int write_file( char* filename, char *buffer, int size){
     // char * x =  (buffer + 0);
     fprintf(file2, "%s ", buffer);
     printf("%s", filename);
+
+    fclose(file2);
 
     return 0;
 
