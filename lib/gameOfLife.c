@@ -22,6 +22,7 @@
 int main(int argc,char* argv[])
 {
     int fileSize;
+    int LoadFileSize;
     int x;
     int y;
     int i = 0; 
@@ -59,7 +60,7 @@ int main(int argc,char* argv[])
     printf("%s\n", buffer);
     tokenizer(&x, &y, &buffer, &grid);
     free(buffer);
-    printf("%s\n", buffer);
+    printf("%d\n", &buffer);
     drawGrid(&x, &y, grid); 
     printf("Hit P to start.\n");
     scanf("%c", &save);
@@ -67,6 +68,7 @@ int main(int argc,char* argv[])
     while(toupper(quit)!= 'Q'){  
         printf("%c\n", resp);
         printf("What is going on\n");
+
         //Drawing the grid.
         //Check to see if User wants to save before evolution.
         //If yes enters into process to write the file.
@@ -77,10 +79,10 @@ int main(int argc,char* argv[])
             char* newFile;
             printf("What would you like the file to be saved as?\n");
             scanf("%s", &newFile);
-            newBuff(&x, &y, &buffer, grid);
-            write_file(&newFile, buffer, fileSize);
+            puts(&newFile);
             prompt(&save);
             resp = save;
+            write_file(newFile, buffer, fileSize);
         }
         else if(toupper(resp) == 'L'){
             char* loadFile;
@@ -99,18 +101,21 @@ int main(int argc,char* argv[])
         else if(toupper(resp) == 'P'){
             
             evolution(&x, &y, &grid);
+            int* tempGrid;
             drawGrid(&x, &y, grid);
             prompt(&save);
             resp = save;
         }
-        else{
-            printf("Not a valid command. Try again.");
-            prompt(&save);
-            resp = save;
+         else  {
+            prompt("please try again");
+            save = 'Wrong';
+            scanf("%c", &save);
         }
         
     }
+    printf("%s\n", "____________    in main     ________________");
     freeMem(&x, &y, &grid);
+    free(buffer);
 
     return 0;
 }
