@@ -40,7 +40,6 @@ void drawGrid(int* x, int* y, int** grid) {
 void newBuff(int* x, int *y, int size, char** buffer, int** grid){
     char* newLine= "\n";
     *buffer = malloc(size* sizeof(int));
-    printf("%d\n", (*(*(grid+0)+0)));
     char* temp = malloc(sizeof(int));
     snprintf(temp, sizeof(temp), "%d ", (*x));
     strncat(*buffer, temp, size);
