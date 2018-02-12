@@ -1,6 +1,8 @@
-//
-// Created by Louis Sullivan and Brendan Nahed on 1/30/18.
-//
+/**
+* @Author: Louis Sullivan, Brendan Nahed
+* @version 1.0
+* @date Feb 11, 2018
+*/
 #include <stdio.h>
 
 #include <string.h>

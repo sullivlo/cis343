@@ -12,11 +12,6 @@
 #include "file_utilities.h"
 #include "game.h"
 
-
-
-
-//Display the grid to the termanal window
-//drawGrid take a x, horizontal and a y, vertical to build a 2D grid
 /* Print the grid array to the termanal window
 *  @param pointer to a horizontal (x), veritcal (y) and values of the grid array
 *  @return void
@@ -35,7 +30,6 @@ void drawGrid(int* x, int* y, int** grid) {
     }
  printf("\n");
 }
-
 
 /**
 * newBuff creates a buffer charactor array using the grid int array
@@ -67,7 +61,7 @@ void newBuff(int* x, int *y, int size, char** buffer, int** grid){
             strncat(*buffer, newLine, size);
         }
     }
-
+}
 
 /** 
 * freeMem deallocates the memory of the 2d array, grid
@@ -108,12 +102,12 @@ void tokenizer(int* x, int* y, char** buffer, int*** grid){
     *x = atoi(strtok(*buffer, " \n"));
     *y = atoi(strtok(NULL, " \n"));
     printf("int x = %d, int y = %d\n",*x, *y );
-    //Creates the grid and populates the grid.
-    // Malloc the grid.
+    //Malloc the grid.
     *grid = (int**) malloc((*x) * sizeof(int*));
     for(int i =0 ; i < *y; ++i) {
         (*grid)[i] = (int*) malloc((*y) * sizeof(int));
     }
+    //Populates the grid from buffer.
     for(int i = 0; i < *x; i++){
         for(int j = 0; j < *y; j++){
             (*(*(*grid+i)+j)) = atoi(strtok(NULL, " \n"));
@@ -151,20 +145,24 @@ void prompt(char* response){
 * Evolutions evoles the grid to the next generation.
 */
 
-int adjacent_to (int* x, int* y, int** grid, int i, int j) {
+int adjacent_to(int* x, int* y, int** grid, int i, int j) {
     //Count keeps track of the adjacent living cells.
     int count = 0;
-    //Checks around the Cell
+    //Checks neighbors of the current position
     for (int k=i-1; k<=i+1; k++) {
         for (int l=j-1; l<=j+1; l++){
             if((-1<k && -1<l) && (*x>k && *y>l)){
                 if(*(*(grid+k)+l)==1){
+                    //if the position being checked is living
+                    //count goes up.
                    count++;
                 }
                  
             }
         }
     }
+    //if the current position is living it is
+    //subtracted from the count.
     if(*(*(grid+i)+j)==1){
         count--;
     }
@@ -182,7 +180,9 @@ int adjacent_to (int* x, int* y, int** grid, int i, int j) {
 * Evolutions evoles the grid to the next generation.
 */
 int evolution(int* x, int* y, int*** grid){
+    //tempGrid is the next generations grid.
     int** tempGrid;
+    //Allocates memory to the tempGrid.
     getMem(x, y, &tempGrid);
     for(int i = 0; i < *x; i++){
         for (int j = 0; j < *y; j++){
@@ -197,20 +197,23 @@ int evolution(int* x, int* y, int*** grid){
             else if ((adj<2 || adj>3) && (*(*(*grid+i)+j))==1){
                 tempGrid[i][j] = -1;
             }
+            //If already dead and can not come back stays dead.
             else if((*(*(*grid+i)+j))== -1){
                 tempGrid[i][j] = -1;
-            }
+            }//If empty stays empty.
             else{
                 tempGrid[i][j] = 0;
             }
             
         }
     }
+    //Copies the tempGrid to the game's grid.
     for(int i = 0; i < *x; i++){
         for (int j = 0; j < *y; j++){
             (*(*(*grid+i)+j)) = tempGrid[i][j];
         }
     }
+    //Deallocates the memory used for the tempGrid.
     freeMem(x, y, &tempGrid);
     return 0;
 }
