@@ -41,41 +41,30 @@ void drawGrid(int* x, int* y, int** grid) {
 }
 
 void newBuff(int* x, int *y, char** buffer, int** grid){
-    printf("Made it1\n");
-    for(int i = 0; i < *x; ++i){
-        for(int j = 0; j < *y; ++j){
-            *buffer = *(*(grid+i)+j) + '0';
-            printf("i = %d, j = %d buffer = %s\n",i, j, *buffer);
-        }
-    }
-    printf("Made it2\n");
-    printf("%s\n", *buffer);
+    // printf("Made it1\n");
+    // for(int i = 0; i < *x; ++i){
+    //     for(int j = 0; j < *y; ++j){
+    //         *buffer = *(*(grid+i)+j) + '0';
+    //         printf("i = %d, j = %d buffer = %s\n",i, j, *buffer);
+    //     }
+    // }
+    // printf("Made it2\n");
+    // printf("%s\n", *buffer);
+    *buffer = "I love cookies";
 }
 
 void freeMem(int* x, int* y, int*** grid){
-    printf("%d\n", &grid);
   //free columns
     for(int i = (*y); i >= 0;--i){
         free((*grid)[i]);
-        printf("i = %d\n", i);
-        drawGrid(x, y, *grid);
     }
-    // for(int i = (*y); i >= 0;--i){
-    //     free((*grid)[i]);ß
-    //     printf("i = %d\n", i);
-    //     drawGrid(x, y, *grid);
-    // }
- // free whole thing
+    
  free ((*grid));
- printf("%d\n", &grid);
- drawGrid(x, y, *grid);
- 
 }
 
 void getMem(int* x, int* y, int*** grid){
     *grid = (int**) malloc((*x) * sizeof(int*));
     for(int i =0 ; i < *y; ++i) {
-        printf("%d", i);
         (*grid)[i] = (int*) malloc((*y) * sizeof(int));
     }
 }
@@ -83,6 +72,7 @@ void getMem(int* x, int* y, int*** grid){
 void tokenizer(int* x, int* y, char** buffer, int*** grid){
     *x = atoi(strtok(*buffer, " \n"));
     *y = atoi(strtok(NULL, " \n"));
+    printf("int x = %d, int y = %d\n",*x, *y );
     //Creates the grid and populates the grid.
     // Malloc the grid.
     // getMem(&x, &y, &grid);
