@@ -57,7 +57,7 @@ int main(int argc,char* argv[])
     free(buffer);
     drawGrid(&x, &y, grid); 
     printf("Hit P to start.\n");
-    scanf("%c", &save);
+    scanf("%s", &save);
     resp = save;
     //Game will quit if the user enters the letter q.
     while(toupper(quit)!= 'Q'){  
@@ -69,25 +69,27 @@ int main(int argc,char* argv[])
         }
         //User can specify a file to save their current game.
         else if(toupper(resp) == 'S'){
-            char* newFile;
+            char* newFile = malloc(250);
             printf("What would you like the file to be saved as?\n");
-            scanf("%s", &newFile);
+            scanf("%s", newFile);
             newBuff(&x, &y,fileSize, &buffer, grid);
-            write_file(&newFile, buffer, fileSize);
+            write_file(newFile, buffer, fileSize);
             free(buffer);
+            free(newFile);
 			char input;
             prompt(&input);
             resp = input;
         }
         //User can load a game by entering the letter l.
         else if(toupper(resp) == 'L'){
-            char* loadFile;
+            char* loadFile = malloc(250);
             printf("What is the file you would like to load?\n");
-            scanf("%s", &loadFile);
-            fileSize = read_file(&loadFile, &buffer);
+            scanf("%s", loadFile);
+            fileSize = read_file(loadFile, &buffer);
             freeMem(&x, &y, grid);
             tokenizer(&x, &y, &buffer, &grid);
             free(buffer);
+            free(loadFile);
             drawGrid(&x, &y, grid);
             char input;
             prompt(&input);
