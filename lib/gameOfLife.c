@@ -3,20 +3,12 @@
 * @version 1.0
 * @date Feb 11, 2018
 */
-
-
-
-//allocate memory to the heap
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "gameOfLife.h"
 #include "file_utilities.h"
 #include "game.h"
-
-
-
-
 /**
 * main
 * int argc - the size of argv[]
@@ -58,7 +50,7 @@ int main(int argc,char* argv[])
     //Call fileUtility.c to read in the file path in the args
     //Tokenizing the Buffer File.
     fileSize = read_file(fileName, &buffer);
-    // //Creates the grid and populates the grid.
+    //Creates the grid and populates the grid.
     int** grid;
     tokenizer(&x, &y, &buffer, &grid);
     free(buffer);
@@ -113,10 +105,8 @@ int main(int argc,char* argv[])
             prompt(&save);
             resp = save;
         }
-        
     }
     freeMem(&x, &y, &grid);
-
     return 0;
 }
 
