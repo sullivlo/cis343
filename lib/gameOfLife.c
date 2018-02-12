@@ -58,6 +58,7 @@ int main(int argc,char* argv[])
     printf("Hit P to start.\n");
     scanf("%c", &save);
     resp = save;
+    //Game will quit if the user enters the letter q.
     while(toupper(quit)!= 'Q'){  
         //Drawing the grid.
         //Check to see if User wants to save before evolution.
@@ -65,6 +66,7 @@ int main(int argc,char* argv[])
         if(toupper(resp)=='Q'){
             quit = 'Q';
         }
+        //User can specify a file to save their current game.
         else if(toupper(resp) == 'S'){
             char* newFile;
             printf("What would you like the file to be saved as?\n");
@@ -75,6 +77,7 @@ int main(int argc,char* argv[])
             prompt(&save);
             resp = save;
         }
+        //User can load a game by entering the letter l.
         else if(toupper(resp) == 'L'){
             char* loadFile;
             printf("What would you like to save the file as?\n");
@@ -89,12 +92,14 @@ int main(int argc,char* argv[])
 
 
         }
+        //User can interact to the next elevation by entering the letter p.
         else if(toupper(resp) == 'P'){
             evolution(&x, &y, &grid);
             drawGrid(&x, &y, grid);
             prompt(&save);
             resp = save;
         }
+        //User has not entered a correct letter, please try again.
         else{
             printf("Not a valid command. Try again.");
             prompt(&save);
