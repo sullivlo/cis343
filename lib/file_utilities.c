@@ -17,8 +17,6 @@ int read_file( char* filename, char **buffer ){
 
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-
     // that-to-another-file
-    printf("hi\n");
-    printf("%s\n", filename);
     FILE* file1 = fopen(filename, "r");
     //gets the size of the file
     if(file1 == NULL){
@@ -35,15 +33,6 @@ int read_file( char* filename, char **buffer ){
     fclose(file1);
     return size;
 }
-/*
-int paint_file(char* fileName, int*** grid, int size){
-  File* filePainter;
-  filePainter = fopen(&filePainter, "w");
-
-  printf("%s %s\n", "Opening file ", &filePainter );
-
-}
-*/
 
 //File name is specified by the user in gameOfLife.c 
 //Buffer is the char array taken from the users txt file
@@ -54,8 +43,8 @@ int write_file( char* filename, char *buffer, int size){
     file2 = fopen(filename, "w");
 
     // char * x =  (buffer + 0);
-    fprintf(file2, "%s ", buffer);
-    printf("%s", filename);
+    // fprintf(file2, "%s ", buffer);
+    fputs(buffer, file2);
 
     fclose(file2);
     return 0;
