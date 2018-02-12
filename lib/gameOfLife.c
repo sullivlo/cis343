@@ -3,6 +3,8 @@
 //
 //
 
+
+
 //allocate memory to the heap
 #include <stdio.h>
 #include <string.h>
@@ -15,7 +17,7 @@
 
 // reference https://www.cprogramming.com/tutorial/lesson14.html
 //Main will take 1 argument, of type string
-//the file path to the grid txt file 
+//the file path to the grid txt file
 
 int main(int argc,char* argv[])
 {
@@ -51,20 +53,16 @@ int main(int argc,char* argv[])
     //Tokenizing the Buffer File.
     fileSize = read_file(fileName, &buffer);
     
-    
     // //Creates the grid and populates the grid.
     int** grid;
-    printf("%s\n", buffer);
     tokenizer(&x, &y, &buffer, &grid);
     free(buffer);
-    printf("%s\n", buffer);
     drawGrid(&x, &y, grid); 
     printf("Hit P to start.\n");
     scanf("%c", &save);
     resp = save;
     while(toupper(quit)!= 'Q'){  
-        printf("%c\n", resp);
-
+        printf("int x = %d, int y = %d\n",x, y );
         //Drawing the grid.
         //Check to see if User wants to save before evolution.
         //If yes enters into process to write the file.
@@ -75,25 +73,20 @@ int main(int argc,char* argv[])
             char* newFile;
             printf("What would you like the file to be saved as?\n");
             scanf("%s", &newFile);
-
-            write_file(newFile, buffer, fileSize);
-
+            newBuff(&x, &y, &buffer, grid);
+            write_file(&newFile, buffer, fileSize);
             prompt(&save);
             resp = save;
         }
         else if(toupper(resp) == 'L'){
-
-
             char* loadFile;
             printf("What would you like to save the file as?\n");
             scanf("%s", &loadFile);
-            printf("%s\n", &loadFile);
             fileSize = read_file(&loadFile, &buffer);
             freeMem(&x, &y, &grid);
             tokenizer(&x, &y, &buffer, &grid);
             free(buffer);
             drawGrid(&x, &y, grid);
-
             prompt(&save);
             resp = save;
 
@@ -105,11 +98,10 @@ int main(int argc,char* argv[])
             prompt(&save);
             resp = save;
         }
-         else  {
+        else{
             printf("Not a valid command. Try again.");
             prompt(&save);
-            scanf("%c", &save);
-
+            resp = save;
         }
         
     }
@@ -117,6 +109,5 @@ int main(int argc,char* argv[])
 
     return 0;
 }
-
 
 
