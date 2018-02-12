@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "gameOfLife.h"
 #include "file_utilities.h"
 #include "game.h"

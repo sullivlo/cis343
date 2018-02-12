@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <math.h>
 #include "gameOfLife.h"
 #include "file_utilities.h"
 #include "game.h"
@@ -126,7 +125,7 @@ void prompt(char* response){
     printf("Would you like to load a file: L\n");
     printf("Would you like to quit the game?: Q\n");
     printf("Or to continue playing. P\n");
-    scanf("%s", response);
+    gets(response);
 }
 
 
@@ -180,6 +179,7 @@ int adjacent_to(int* x, int* y, int** grid, int i, int j) {
 int evolution(int* x, int* y, int*** grid){
     //tempGrid is the next generations grid.
     int** tempGrid;
+    printf("x = %d, y = %d\n", *x, *y);
     //Allocates memory to the tempGrid.
     getMem(x, y, &tempGrid);
     for(int i = 0; i < *x; i++){
