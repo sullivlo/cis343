@@ -41,9 +41,7 @@ int write_file( char* filename, char *buffer, int size){
     //reference https://stackoverflow.com/questions/42033932/c-program-to-reverse-content-of-a-file-and-write-that-to-another-file
     FILE* file2;
     file2 = fopen(filename, "w");
-
-    // char * x =  (buffer + 0);
-    // fprintf(file2, "%s ", buffer);
+    
     fputs(buffer, file2);
 
     fclose(file2);
