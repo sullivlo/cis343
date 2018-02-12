@@ -32,7 +32,7 @@ void drawGrid(int* x, int* y, int** grid) {
 
 /**
 * newBuff creates a buffer charactor array using the grid int array
-* @param int (x), int (y), point to a pointer of a grid and buffer 
+* @param int (x), int (y), pointer to a buffer, and the grid int array 
 * sources: https://www.geeksforgeeks.org/snprintf-c-library/
 * @return void
 */
@@ -78,6 +78,8 @@ void freeMem(int* x, int* y, int** grid){
 * getMem allocates of the 2d array
 * @param: pointer to a x,y value. Pointer to a pointer, grid.
 * @return void
+* Source: http://thispointer.com/allocating-and-
+* deallocating-2d-arrays-dynamically-in-c-and-c/
 */
 void getMem(int* x, int* y, int*** grid){
     *grid = (int**) malloc((*x) * sizeof(int*));

@@ -12,9 +12,9 @@
 #include "game.h"
 /**
 * main
-* int argc - the size of argv[]
-* char* argv[] - a char array of command line arguments.
-* return: 0 - to end the method.
+* @parm int argc - the size of argv[]
+* @parm char* argv[] - a char array of command line arguments.
+* @return 0 - to end the method.
 * Main runs the game of life. It allows the user to
 * Play, Save, Load, and Quit.
 */
