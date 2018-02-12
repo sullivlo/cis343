@@ -22,8 +22,8 @@
 int read_file( char* filename, char **buffer ){
     FILE* file1 = fopen(filename, "r");
     if(file1 == NULL){
-    	printf("No File Found.\n");
-    	return -1;
+        printf("No File Found.\n");
+        return -1;
     }
     int size;
     fseek(file1,0L, SEEK_END);
@@ -54,5 +54,4 @@ int write_file( char* filename, char *buffer, int size){
     return 0;
 
 }
-
 
