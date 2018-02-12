@@ -17,7 +17,6 @@
 
 //Display the grid to the termanal window
 //drawGrid take a x, horizontal and a y, vertical to build a 2D grid
-=======
 /* Print the grid array to the termanal window
 *  @param pointer to a horizontal (x), veritcal (y) and values of the grid array
 *  @return void
@@ -179,3 +178,4 @@ int evolution(int* x, int* y, int*** grid){
     freeMem(x, y, &tempGrid);
     return 0;
 }
+
