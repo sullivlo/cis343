@@ -7,10 +7,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 #include "gameOfLife.h"
 #include "file_utilities.h"
 #include "game.h"
 
+
+
+
+//Display the grid to the termanal window
+//drawGrid take a x, horizontal and a y, vertical to build a 2D grid
 /* Print the grid array to the termanal window
 *  @param pointer to a horizontal (x), veritcal (y) and values of the grid array
 *  @return void
@@ -30,31 +36,38 @@ void drawGrid(int* x, int* y, int** grid) {
  printf("\n");
 }
 
+
 /**
 * newBuff creates a buffer charactor array using the grid int array
 * @param int (x), int (y), point to a pointer of a grid and buffer 
 * sources: https://www.geeksforgeeks.org/snprintf-c-library/
 * @return void
 */
-void newBuff(int* x, int *y, char** buffer, int** grid){
-     printf("In newBuff\n");
-
-
-     for(int i = 0; i < 10; i++){
-         for(int j = 0; j < 10; j++){
-             *buffer = *(*(grid+i)+j);
-              printf("Made it1\n");
-
-            //printf("%s\n", *buffer);
-            printf("Made it2\n");
-            printf("%s %d %s %d %s %d\n","i: ",i,"j: " ,j,"buffer: " ,*buffer );
-
-      
-         }
-        
+void newBuff(int* x, int *y, int size, char** buffer, int** grid){
+    char* newLine= "\n";
+    *buffer = malloc(size* sizeof(int));
+    printf("%d\n", (*(*(grid+0)+0)));
+    char* temp = malloc(sizeof(int));
+    snprintf(temp, sizeof(temp), "%d ", (*x));
+    strncat(*buffer, temp, size);
+    free(temp);
+    temp = malloc(sizeof(int));
+    snprintf(temp, sizeof(temp), "%d ", (*y));
+    strncat(*buffer, temp, size);
+    free(temp);
+    strncat(*buffer, newLine, size);
+    for(int i = 0; i < *x; ++i){
+        for(int j = 0; j < *y; ++j){
+            temp = malloc(sizeof(int));
+            snprintf(temp, sizeof(temp), "%d ", (*(*(grid+i)+j)));
+            strncat(*buffer, temp, size);
+            free(temp);
+        }
+        if(i+1<*x){
+            strncat(*buffer, newLine, size);
+        }
     }
-     
-}
+
 
 /** 
 * freeMem deallocates the memory of the 2d array, grid
@@ -88,7 +101,6 @@ void tokenizer(int* x, int* y, char** buffer, int*** grid){
     printf("int x = %d, int y = %d\n",*x, *y );
     //Creates the grid and populates the grid.
     // Malloc the grid.
-    // getMem(&x, &y, &grid);
     *grid = (int**) malloc((*x) * sizeof(int*));
     for(int i =0 ; i < *y; ++i) {
         (*grid)[i] = (int*) malloc((*y) * sizeof(int));
@@ -109,7 +121,6 @@ void prompt(char* response){
     printf("Or to continue playing. P\n");
     scanf("%s", response);
 }
-
 
 
 //Looks for the Adjacent living blocks.
@@ -156,8 +167,7 @@ int evolution(int* x, int* y, int*** grid){
             else{
                 tempGrid[i][j] = 0;
             }
-            // printf("grid[%d][%d] = %d\n", i, j, (*(*(*grid+i)+j)));
-            // printf("tempGrid[%d][%d] = %d\n", i, j, tempGrid[i][j]);
+            
         }
     }
     for(int i = 0; i < *x; i++){
@@ -168,3 +178,4 @@ int evolution(int* x, int* y, int*** grid){
     freeMem(x, y, &tempGrid);
     return 0;
 }
+

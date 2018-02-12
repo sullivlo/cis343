@@ -52,7 +52,6 @@ int main(int argc,char* argv[])
     //Call fileUtility.c to read in the file path in the args
     //Tokenizing the Buffer File.
     fileSize = read_file(fileName, &buffer);
-    
     // //Creates the grid and populates the grid.
     int** grid;
     tokenizer(&x, &y, &buffer, &grid);
@@ -62,7 +61,6 @@ int main(int argc,char* argv[])
     scanf("%c", &save);
     resp = save;
     while(toupper(quit)!= 'Q'){  
-        printf("int x = %d, int y = %d\n",x, y );
         //Drawing the grid.
         //Check to see if User wants to save before evolution.
         //If yes enters into process to write the file.
@@ -73,8 +71,9 @@ int main(int argc,char* argv[])
             char* newFile;
             printf("What would you like the file to be saved as?\n");
             scanf("%s", &newFile);
-            newBuff(&x, &y, &buffer, grid);
+            newBuff(&x, &y,fileSize, &buffer, grid);
             write_file(&newFile, buffer, fileSize);
+            free(buffer);
             prompt(&save);
             resp = save;
         }
@@ -109,5 +108,6 @@ int main(int argc,char* argv[])
 
     return 0;
 }
+
 
 
