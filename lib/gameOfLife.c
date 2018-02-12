@@ -15,7 +15,7 @@
 
 // reference https://www.cprogramming.com/tutorial/lesson14.html
 //Main will take 1 argument, of type string
-//the file path to the grid txt file
+//the file path to the grid txt file 
 
 int main(int argc,char* argv[])
 {
@@ -64,6 +64,7 @@ int main(int argc,char* argv[])
     resp = save;
     while(toupper(quit)!= 'Q'){  
         printf("%c\n", resp);
+
         //Drawing the grid.
         //Check to see if User wants to save before evolution.
         //If yes enters into process to write the file.
@@ -74,17 +75,28 @@ int main(int argc,char* argv[])
             char* newFile;
             printf("What would you like the file to be saved as?\n");
             scanf("%s", &newFile);
-            newBuff(&x, &y, &buffer, grid);
-            write_file(&newFile, buffer, fileSize);
+
+            write_file(newFile, buffer, fileSize);
+
             prompt(&save);
             resp = save;
         }
         else if(toupper(resp) == 'L'){
-            printf("Hi2\n");
-            buffer_overRide(&x, &y, &fileSize, grid, &buffer);
-            printf("%s\n", buffer);
+
+
+            char* loadFile;
+            printf("What would you like to save the file as?\n");
+            scanf("%s", &loadFile);
+            printf("%s\n", &loadFile);
+            fileSize = read_file(&loadFile, &buffer);
+            freeMem(&x, &y, &grid);
+            tokenizer(&x, &y, &buffer, &grid);
+            free(buffer);
+            drawGrid(&x, &y, grid);
+
             prompt(&save);
             resp = save;
+
 
         }
         else if(toupper(resp) == 'P'){
@@ -93,10 +105,11 @@ int main(int argc,char* argv[])
             prompt(&save);
             resp = save;
         }
-        else{
+         else  {
             printf("Not a valid command. Try again.");
             prompt(&save);
-            resp = save;
+            scanf("%c", &save);
+
         }
         
     }
