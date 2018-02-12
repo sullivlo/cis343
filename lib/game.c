@@ -73,7 +73,16 @@ void getMem(int* x, int* y, int*** grid){
         (*grid)[i] = (int*) malloc((*y) * sizeof(int));
     }
 }
-
+/**
+* tokenizer
+* @parm int* x - the amount of rows in the grid.
+* @parm int* y - the amount of columns in the grid.
+* @parm char** buffer - pointer to a char array.
+* @parm int*** grid - pointer to the two dementional
+* integer array that holds the world.
+* tokenizer creates tokens of each integer in the
+* buffer and the points them into the grid.
+*/
 void tokenizer(int* x, int* y, char** buffer, int*** grid){
     *x = atoi(strtok(*buffer, " \n"));
     *y = atoi(strtok(NULL, " \n"));
@@ -91,6 +100,12 @@ void tokenizer(int* x, int* y, char** buffer, int*** grid){
     }
 }
 
+/**
+* prompt
+* @parm char* response - a pointer to a char.
+* prompt is the message displayed to the user
+* after each iteration of the game.
+*/
 void prompt(char* response){
     *response = ' ';
     printf("\n");
@@ -101,7 +116,19 @@ void prompt(char* response){
     scanf("%s", response);
 }
 
-//Looks for the Adjacent living blocks.
+
+/**
+* adjacent_to
+* @parm int* x - the amount of rows in the grid.
+* @parm int* y - the amount of columns in the grid.
+* @parm int*** grid - pointer to the two dementional
+* integer array that holds the world.
+* @parm int i - the current row on the grid.
+* @parm int j - the current column on the grid.
+* @return count - count in the number of live neighbors
+* to the current position.
+* Evolutions evoles the grid to the next generation.
+*/
 int adjacent_to (int* x, int* y, int** grid, int i, int j) {
     //Count keeps track of the adjacent living cells.
     int count = 0;
@@ -122,7 +149,16 @@ int adjacent_to (int* x, int* y, int** grid, int i, int j) {
     return count;
 }
 
-//Evolves the grid and creates a temperary grid. 
+
+/**
+* evolution
+* @parm int* x - the amount of rows in the grid.
+* @parm int* y - the amount of columns in the grid.
+* @parm int*** grid - pointer to the two dementional
+* integer array that holds the world.
+* @return 0 - to end the method.
+* Evolutions evoles the grid to the next generation.
+*/
 int evolution(int* x, int* y, int*** grid){
     int** tempGrid;
     getMem(x, y, &tempGrid);
