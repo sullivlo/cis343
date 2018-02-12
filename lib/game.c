@@ -1,11 +1,9 @@
-// Author: Louis Sullivan, Brendan Nahed
-//
-//
-//
+/**
+* @Author: Louis Sullivan, Brendan Nahed
+* @version 1.0
+* @date Feb 11, 2018
+*/
 
-
-
-//allocate memory to the heap
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -13,25 +11,17 @@
 #include "file_utilities.h"
 #include "game.h"
 
-
-// int getMem(int* x, int* y, int*** grid)
-// {
-// //https://www.ics.uci.edu/~dan/class/165/notes/memory.html
-//     *grid = (int**) malloc((*x) * sizeof(int*));
-//     for(int i =0 ; i < *y; ++i) {
-//         *grid[i] = (int*) malloc((*y) * sizeof(int));
-//     }
-//     return 0;
-// }
-
-
-//Display the grid to the termanal window
-//drawGrid take a x, horizontal and a y, vertical to build a 2D grid
+/* Print the grid array to the termanal window
+*  @param pointer to a horizontal (x), veritcal (y) and values of the grid array
+*  @return void
+*/
 void drawGrid(int* x, int* y, int** grid) {
+    
     for (int i = 0; i < *x; i++) {
         for (int j = 0; j < *y; j++) {
             if(*(*(grid+i)+j) != -1)
                 printf("%d ", *(*(grid+i)+j));
+
             else
                 printf("- ");
         }
@@ -40,19 +30,37 @@ void drawGrid(int* x, int* y, int** grid) {
  printf("\n");
 }
 
+/**
+* newBuff creates a buffer charactor array using the grid int array
+* @param int (x), int (y), point to a pointer of a grid and buffer 
+* sources: https://www.geeksforgeeks.org/snprintf-c-library/
+* @return void
+*/
 void newBuff(int* x, int *y, char** buffer, int** grid){
-    // printf("Made it1\n");
-    // for(int i = 0; i < *x; ++i){
-    //     for(int j = 0; j < *y; ++j){
-    //         *buffer = *(*(grid+i)+j) + '0';
-    //         printf("i = %d, j = %d buffer = %s\n",i, j, *buffer);
-    //     }
-    // }
-    // printf("Made it2\n");
-    // printf("%s\n", *buffer);
-    *buffer = "I love cookies";
+     printf("In newBuff\n");
+
+
+     for(int i = 0; i < 10; i++){
+         for(int j = 0; j < 10; j++){
+             *buffer = *(*(grid+i)+j);
+              printf("Made it1\n");
+
+            //printf("%s\n", *buffer);
+            printf("Made it2\n");
+            printf("%s %d %s %d %s %d\n","i: ",i,"j: " ,j,"buffer: " ,*buffer );
+
+      
+         }
+        
+    }
+     
 }
 
+/** 
+* freeMem deallocates the memory of the 2d array, grid
+* @param: pointer to a x,y value. Pointer to a pointer, grid.
+* @return void
+*/
 void freeMem(int* x, int* y, int*** grid){
   //free columns
     for(int i = (*y); i >= 0;--i){
@@ -62,6 +70,11 @@ void freeMem(int* x, int* y, int*** grid){
  free ((*grid));
 }
 
+/** 
+* getMem allocates of the 2d array
+* @param: pointer to a x,y value. Pointer to a pointer, grid.
+* @return void
+*/
 void getMem(int* x, int* y, int*** grid){
     *grid = (int**) malloc((*x) * sizeof(int*));
     for(int i =0 ; i < *y; ++i) {
@@ -97,26 +110,7 @@ void prompt(char* response){
     scanf("%s", response);
 }
 
-int buffer_overRide(int* x, int* y, int* size, int** grid, char** buffer){    
-    drawGrid(x , y, grid);
-    printf("%s\n", *buffer);
-    printf("%s\n", *(buffer+2));
-    *buffer = malloc((*size) * sizeof(char));
-    *buffer[0] = *(*(buffer + *x + ' ')); 
-    *buffer[0] = *(*(buffer + *y + ' '+ '\n'));
-    drawGrid(x , y, grid);
-    printf("Hi4\n");
-    for(int i = 1; i < (*x)+1; ++i){
-        for(int j = 0; j < *y; ++j){
-            printf("Hi3\n");
-            *buffer[i] = *(*(buffer + ' '+ *(*(grid+(i-1))+j)));
-            printf("%d\n", *(*(grid+(i-1))+j));
-        }
-        *buffer[i] = *(*(buffer + ' '+ '\n'));
-        printf("Hi5\n");
-    }
-    return 0;
-}
+
 
 //Looks for the Adjacent living blocks.
 int adjacent_to (int* x, int* y, int** grid, int i, int j) {

@@ -1,8 +1,7 @@
-//
-
 // Created by Louis Sullivan, Brendan Nahed on 1/30/18.
-
 //
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
