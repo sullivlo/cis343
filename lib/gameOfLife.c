@@ -15,10 +15,15 @@
 
 
 
-// reference https://www.cprogramming.com/tutorial/lesson14.html
-//Main will take 1 argument, of type string
-//the file path to the grid txt file
 
+/**
+* main
+* int argc - the size of argv[]
+* char* argv[] - a char array of command line arguments.
+* return: 0 - to end the method.
+* Main runs the game of life. It allows the user to
+* Play, Save, Load, and Quit.
+*/
 int main(int argc,char* argv[])
 {
     int fileSize;
