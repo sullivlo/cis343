@@ -100,7 +100,6 @@ void getMem(int* x, int* y, int*** grid){
 void tokenizer(int* x, int* y, char** buffer, int*** grid){
     *x = atoi(strtok(*buffer, " \n"));
     *y = atoi(strtok(NULL, " \n"));
-    printf("int x = %d, int y = %d\n",*x, *y );
     //Malloc the grid.
     *grid = (int**) malloc((*x) * sizeof(int*));
     for(int i =0 ; i < *y; ++i) {
