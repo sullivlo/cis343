@@ -66,13 +66,12 @@ void newBuff(int* x, int *y, int size, char** buffer, int** grid){
 * @param: pointer to a x,y value. Pointer to a pointer, grid.
 * @return void
 */
-void freeMem(int* x, int* y, int*** grid){
+void freeMem(int* x, int* y, int** grid){
   //free columns
-    for(int i = (*y); i >= 0;--i){
-        free((*grid)[i]);
+    for(int i = (0); i < (*x) ;++i){
+        free(grid[i]);
     }
-    
- free ((*grid));
+ free (grid);
 }
 
 /** 
@@ -119,13 +118,12 @@ void tokenizer(int* x, int* y, char** buffer, int*** grid){
 * after each iteration of the game.
 */
 void prompt(char* response){
-    *response = ' ';
     printf("\n");
     printf("Would you like to save this file: S\n");
     printf("Would you like to load a file: L\n");
     printf("Would you like to quit the game?: Q\n");
     printf("Or to continue playing. P\n");
-    gets(response);
+    scanf("%s", response);
 }
 
 
@@ -179,7 +177,6 @@ int adjacent_to(int* x, int* y, int** grid, int i, int j) {
 int evolution(int* x, int* y, int*** grid){
     //tempGrid is the next generations grid.
     int** tempGrid;
-    printf("x = %d, y = %d\n", *x, *y);
     //Allocates memory to the tempGrid.
     getMem(x, y, &tempGrid);
     for(int i = 0; i < *x; i++){
@@ -188,16 +185,16 @@ int evolution(int* x, int* y, int*** grid){
             //or Dead cells coming alive.
             int adj = adjacent_to(x, y, *grid, i, j);
             if(((adj==2 || adj==3) && (*(*(*grid+i)+j))==1)
-                ||(adj==3 && (*(*(*grid+i)+j))!= 0)){
-                tempGrid[i][j] = 1;
+                ||(adj==3 && (*(*(*grid+i)+j))!= 0)){               
+				tempGrid[i][j] = 1;
             }
             //Living cells to dead.
             else if ((adj<2 || adj>3) && (*(*(*grid+i)+j))==1){
-                tempGrid[i][j] = -1;
+				tempGrid[i][j] = -1;
             }
             //If already dead and can not come back stays dead.
             else if((*(*(*grid+i)+j))== -1){
-                tempGrid[i][j] = -1;
+				tempGrid[i][j] = -1;
             }//If empty stays empty.
             else{
                 tempGrid[i][j] = 0;
@@ -212,7 +209,7 @@ int evolution(int* x, int* y, int*** grid){
         }
     }
     //Deallocates the memory used for the tempGrid.
-    freeMem(x, y, &tempGrid);
+    freeMem(x, y, tempGrid);
     return 0;
 }
 

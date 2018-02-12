@@ -16,7 +16,7 @@ void prompt(char* response);
 void tokenizer(int* x, int* y, char** buffer, int*** grid);
 void newBuff(int* x, int *y, int size, char** buffer, int** grid);
 char* toArray(int num, char* numArr);
-void freeMem(int *x, int *y, int*** grid);
+void freeMem(int *x, int *y, int** grid);
 int evolution(int* x, int* y, int*** grid);
 void drawGrid(int* x, int* y, int** grid) ; 
 

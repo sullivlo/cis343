@@ -75,21 +75,23 @@ int main(int argc,char* argv[])
             newBuff(&x, &y,fileSize, &buffer, grid);
             write_file(&newFile, buffer, fileSize);
             free(buffer);
-            prompt(&save);
-            resp = save;
+			char input;
+            prompt(&input);
+            resp = input;
         }
         //User can load a game by entering the letter l.
         else if(toupper(resp) == 'L'){
             char* loadFile;
-            printf("What would you like to save the file as?\n");
+            printf("What is the file you would like to load?\n");
             scanf("%s", &loadFile);
             fileSize = read_file(&loadFile, &buffer);
-            freeMem(&x, &y, &grid);
+            freeMem(&x, &y, grid);
             tokenizer(&x, &y, &buffer, &grid);
             free(buffer);
             drawGrid(&x, &y, grid);
-            prompt(&save);
-            resp = save;
+            char input;
+            prompt(&input);
+            resp = input;
 
 
         }
@@ -97,17 +99,19 @@ int main(int argc,char* argv[])
         else if(toupper(resp) == 'P'){
             evolution(&x, &y, &grid);
             drawGrid(&x, &y, grid);
-            prompt(&save);
-            resp = save;
+            char input;
+            prompt(&input);
+            resp = input;
         }
         //User has not entered a correct letter, please try again.
         else{
             printf("Not a valid command. Try again.");
-            prompt(&save);
-            resp = save;
+            char input;
+            prompt(&input);
+            resp = input;
         }
     }
-    freeMem(&x, &y, &grid);
+    freeMem(&x, &y, grid);
     return 0;
 }
 
