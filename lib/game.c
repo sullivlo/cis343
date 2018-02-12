@@ -32,7 +32,7 @@ void drawGrid(int* x, int* y, int** grid) {
 
 /**
 * newBuff creates a buffer charactor array using the grid int array
-* @param int (x), int (y), point to a pointer of a grid and buffer 
+* @param int (x), int (y), pointer to a buffer, and the grid int array 
 * sources: https://www.geeksforgeeks.org/snprintf-c-library/
 * @return void
 */
